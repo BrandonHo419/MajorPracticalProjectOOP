@@ -5,14 +5,13 @@
             "name": "WSL",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/mnt/c/Users/brand/OneDrive/Documents/SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit/include"
+                "C:/Users/brand/OneDrive/Documents/SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.1/include"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "/usr/bin/g++", // This is the g++ path in WSL
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-x64"
