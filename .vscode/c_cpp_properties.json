@@ -1,17 +1,21 @@
 {
+    "version": 4,
     "configurations": [
         {
-            "name": "Win32",
+            "name": "WSL",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/Users/brand/OneDrive/Documents/SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit"
+                "/mnt/c/Users/brand/OneDrive/Documents/SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit/include"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
-            ]
+            ],
+            "compilerPath": "/usr/bin/g++", // This is the g++ path in WSL
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
         }
-    ],
-    "version": 4
+    ]
 }

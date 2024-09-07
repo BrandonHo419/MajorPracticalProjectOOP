@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>  // Correct SFML include
+#include <Graphics.hpp>  // Correct SFML include
 
 int main()
 {
