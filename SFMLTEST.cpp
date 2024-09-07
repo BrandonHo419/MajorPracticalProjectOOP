@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>  // Correct SFML include
 
 int main()
 {
@@ -19,6 +19,3 @@ int main()
 
     return 0;
 }
-
-
-//chat gpt based SFML test
