@@ -5,7 +5,8 @@
             "name": "WSL",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/Users/brand/OneDrive/Documents/SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.1/include"
+                "C:/Users/brand/OneDrive/Documents/SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.1/include",
+                "C:/Users/brand/Documents/opencv"
             ],
             "defines": [
                 "_DEBUG",
