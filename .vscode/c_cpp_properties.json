@@ -6,7 +6,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "C:/Users/brand/OneDrive/Documents/SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.1/include",
-                "C:/Users/brand/Documents/opencv"
+                "C:/Users/brand/OneDrive/Documents/opencv/build/include/opencv2",
+                "C:/Users/brand/OneDrive/Documents/opencv/build/include"
             ],
             "defines": [
                 "_DEBUG",
