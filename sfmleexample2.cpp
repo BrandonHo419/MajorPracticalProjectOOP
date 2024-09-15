@@ -10,6 +10,12 @@ void move_left(CircleShape& a) {
     a.setPosition(pose);
 }
 
+void move_right(CircleShape& a) {
+    Vector2f pose = a.getPosition(); 
+    pose.x = pose.x+1; 
+    a.setPosition(pose);
+}
+
 int main() {
     RenderWindow window(VideoMode(690, 690), "rawr");
     CircleShape shape(10.f);
@@ -31,9 +37,7 @@ int main() {
             move_left(shape); //passes shape parameter as its called via reference (i think)
         } // im getting this feeling will have quite a  bit of ctrl+c & ctrl+v (iywim lmao)
          if(Keyboard::isKeyPressed(Keyboard::Right)) {
-            Vector2f pose = shape.getPosition(); //vector2f is a predefined object
-            pose.x = pose.x+1; // going right (on an x axis)
-            shape.setPosition(pose);
+            move_right(shape);
             // honestly watching the video around 15:30 did my head in with this part bc he changed smthn??
         };
         if(Keyboard::isKeyPressed(Keyboard::Up)) {
