@@ -19,6 +19,16 @@ int Technology::getMoneyModifier() {
     return moneyModifier;
 };
 
+void Technology::setBaseModifier(int modifier) {
+    baseModifier = modifier;
+}
+
+void Technology::setCropModifier(int modifier) {
+    cropModifier = modifier;
+}
+
+
+
 
 Technology::~Technology(){}; //deconstructs
 

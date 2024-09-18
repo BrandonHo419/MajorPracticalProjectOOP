@@ -10,7 +10,7 @@ class Technology {
 
     protected:
         string cropTech; // Will be used locally
-        string moneyTech; // Will be used locally
+        string moneyTech; // Will be used globally in money
         int cropModifier;
         int moneyModifier;
         int baseModifier; // BaseModifier added
@@ -18,9 +18,9 @@ class Technology {
     public:
         Technology();
         // Don't think any of these are needed
-        void setGlobalCropModifier();
-        void setGlobalMoneyModifier();
-        void setBaseModifier();
+        void setCropModifier(int modifier);
+        void setGlobalModifier(int modifier);
+        void setBaseModifier(int modifier);
 
         string getCropTech(); // the logic for the string: (name), int = modifierValue
         string getMoneyTech();
