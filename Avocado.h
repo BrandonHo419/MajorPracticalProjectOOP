@@ -9,9 +9,7 @@ class avocado : public Crops{ // inherits public so the public and protected mem
 
     public:
     avocado();
-    void setGrowthSpeed();
-    void setPlantSpeed();
-    void setThirstRate();
+    void setSpeed();
     ~avocado();
 };
 

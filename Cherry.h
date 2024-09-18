@@ -10,9 +10,7 @@ class Cherry : public Crops {
 
     public:
     Cherry();
-    void setGrowthSpeed();
-    void setPlantSpeed();
-    void setThirstRate();
+    void setSpeed();
     ~Cherry();
 };
 

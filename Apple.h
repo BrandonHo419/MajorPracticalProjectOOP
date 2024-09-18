@@ -9,9 +9,7 @@ class Apple : public Crops {
 
     public:
     Apple();
-    void setGrowthSpeed();
-    void setPlantSpeed();
-    void setThirstRate();
+    void setSpeed();
     ~Apple();
 };
 

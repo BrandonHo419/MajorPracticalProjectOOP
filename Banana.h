@@ -9,9 +9,7 @@ class Banana : public Crops {
 
     public:
     Banana();
-    void setGrowthSpeed();
-    void setPlantSpeed();
-    void setThirstRate();
+    void setSpeed();
     ~Banana();
 };
 

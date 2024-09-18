@@ -9,9 +9,7 @@ class Beetroot : public Crops {
 
     public:
     Beetroot();
-    void setGrowthSpeed();
-    void setPlantSpeed();
-    void setThirstRate();
+    void setSpeed();
     ~Beetroot();
 };
 

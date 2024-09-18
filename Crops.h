@@ -19,15 +19,11 @@ class Crops {
     protected:
         // each crop will inherit these
         float modifier; // use for technology
-        float growthSpeed;
-        float plantSpeed;
-        float thirstRate;
+        float speed;
         
     public:
         Crops();
-        float getGrowthSpeed();
-        float getPlantSpeed();
-        float getThirstRate();
+        float getSpeed();
 
         // 
 

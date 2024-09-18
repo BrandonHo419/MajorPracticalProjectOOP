@@ -1,18 +1,12 @@
 #include "Crops.h"
 
-Crops::Crops() : growthSpeed(0.0), plantSpeed(0.0), thirstRate(0.0){};
+Crops::Crops() : speed(0.0) {};
 
-float Crops::getGrowthSpeed() {
-    return growthSpeed;
+float Crops::getSpeed() {
+    return speed;
 };
 
-float Crops::getPlantSpeed() {
-    return plantSpeed;
-}
 
-float Crops::getThirstRate() {
-    return thirstRate;
-};
 
 bool Crops::isGrown() {
     // if(timeElapsed = growthRate) {
