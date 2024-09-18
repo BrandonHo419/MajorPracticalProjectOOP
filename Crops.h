@@ -28,6 +28,11 @@ class Crops {
         float getGrowthSpeed();
         float getPlantSpeed();
         float getThirstRate();
+
+        // 
+
+        virtual bool isGrown();
+        virtual void printInfo();
         ~Crops();
 };
 

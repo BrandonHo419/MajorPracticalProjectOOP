@@ -14,6 +14,11 @@ float Crops::getThirstRate() {
     return thirstRate;
 };
 
+bool Crops::isGrown() {
+    // if(timeElapsed = growthRate) {
+        return true;
+    // }
+}
 Crops::~Crops(){}; 
 
 

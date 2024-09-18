@@ -6,6 +6,7 @@ class Cherry : public Crops {
     private:
 
     protected:
+        
 
     public:
     Cherry();
