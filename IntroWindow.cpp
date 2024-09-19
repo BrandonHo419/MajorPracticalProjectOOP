@@ -39,6 +39,16 @@ int main() {
         cerr << "Error loading background texture" << endl;
         return -1; 
     }
+
+    if (!avo.loadFromFile("avocado.jpg")) {
+        cerr << "Error loading avocado texture" << endl;
+        return -1; 
+    };
+
+    if (!beet.loadFromFile("beetroot.jpg")) {
+        cerr << "Error loading beetroot texture" << endl;
+        return -1; 
+    }
     
 
     // Create sprites for the GFX
