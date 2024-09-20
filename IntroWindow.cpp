@@ -7,7 +7,7 @@ using namespace sf;
 
 void clickTest() {
     cout << "Click Testing Successful" << endl;
-}
+};
 
 int main() {
     
@@ -19,6 +19,9 @@ int main() {
     Texture minibd;
     Texture avo;
     Texture beet;
+    Texture apple;
+    Texture banana;
+    Texture cherry;
     // End loading textures
 
     // load from file
@@ -26,6 +29,9 @@ int main() {
     minibd.loadFromFile("minibd.jpg");
     avo.loadFromFile("avocado.png");
     beet.loadFromFile("beetroot.png");
+    apple.loadFromFile("apple.png");
+    banana.loadFromFile("banana.png");
+    cherry.loadFromFile("cherry.png");
     // end load from file
     
 
@@ -40,12 +46,12 @@ int main() {
         return -1; 
     }
 
-    if (!avo.loadFromFile("avocado.jpg")) {
+    if (!avo.loadFromFile("avocado.png")) {
         cerr << "Error loading avocado texture" << endl;
         return -1; 
     };
 
-    if (!beet.loadFromFile("beetroot.jpg")) {
+    if (!beet.loadFromFile("beetroot.png")) {
         cerr << "Error loading beetroot texture" << endl;
         return -1; 
     }
@@ -57,7 +63,9 @@ int main() {
     Sprite buttonTest(minibd);
     Sprite avocado(avo);
     Sprite beetroot(beet);
-    
+    Sprite apples(apple);
+    Sprite bananas(banana);
+    Sprite cherries(cherry);
 
     // End sprites
 
@@ -66,6 +74,9 @@ int main() {
     buttonTest.setScale(0.25, 0.15);
     avocado.setScale(0.2, 0.2);
     beetroot.setScale(0.2, 0.2);
+    apples.setScale(0.2, 0.2);
+    bananas.setScale(0.2, 0.2);
+    cherries.setScale(0.2, 0.2);
     //End scales
 
     // Set positions
@@ -76,8 +87,10 @@ int main() {
     // New position
     buttonTest.setPosition(100, 100);
     avocado.setPosition(150, 100);
-    beetroot.setPosition(250, 200);
-
+    beetroot.setPosition(150, 175);
+    apples.setPosition(150, 250);
+    bananas.setPosition(150, 325);
+    cherries.setPosition(150, 400);
     // End positions
 
 
@@ -107,9 +120,12 @@ int main() {
         win.draw(buttonTest);
         win.draw(avocado);
         win.draw(beetroot);
+        win.draw(apples);
+        win.draw(bananas);
+        win.draw(cherries);
         win.display();
     }
 
     return 0;
-}
+};
 
