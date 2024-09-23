@@ -14,9 +14,7 @@ void drawShop(RenderWindow& win) {
     shopbg.setScale(1, 1);
     shopbg.setPosition(480, 200);
     win.draw(shopbg);
-    win.display();
-
-   
+    win.display();  
 };
 
 #endif

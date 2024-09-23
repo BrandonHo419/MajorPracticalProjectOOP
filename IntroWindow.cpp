@@ -3,7 +3,7 @@
 #include <ctime>
 #include "Textures.h"
 #include "drawShop.h"
-#include "avoGrowth.h"
+#include "PlantGrowth.h"
 
 using namespace std;
 using namespace sf;
@@ -281,7 +281,10 @@ int main() {
             if(event.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(signs2.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
-                    clickTest();
+                    bar21.setFillColor(Color::Green);
+                    win.draw(bar21);
+                    win.display();
+                    avoGrowth(funds, fundsInString, money, win, bar21, bar22, bar23, bar24, bar25); 
     };
             }
         } if(event.type = Event::MouseButtonPressed) {
