@@ -3,6 +3,7 @@
 #include <ctime>
 #include "Textures.h"
 #include "drawShop.h"
+#include "avoGrowth.h"
 
 using namespace std;
 using namespace sf;
@@ -257,7 +258,10 @@ int main() {
             if(event.mouseButton.button == Mouse::Left) { // checks whether it was a left mouse button press
                 Vector2i mousepos = Mouse::getPosition(win); // retrieves the current mouse position (x and y)
                 if(signs.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) { // returns a rectangle of bounds and static_cast converts 2i to 2f
-                    clickTest(); // calls function
+                    bar.setFillColor(Color::Green);
+                    win.draw(bar);
+                    win.display();
+                    avoGrowth(win, bar, bar1, bar2, bar3, bar4); // calls function
                 } 
             }
         } if(event.type = Event::MouseButtonPressed) {
