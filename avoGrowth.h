@@ -7,8 +7,9 @@
 using namespace std;
 using namespace sf;
 
-void avoGrowth(RenderWindow& win, RectangleShape& bar, RectangleShape&bar1, RectangleShape&bar2, RectangleShape&bar3, RectangleShape&bar4) {
+void avoGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar, RectangleShape&bar1, RectangleShape&bar2, RectangleShape&bar3, RectangleShape&bar4) {
     // lets say avo growth time is 25s
+    float profit = 100;
     int y = 1;
         this_thread::sleep_for(chrono::seconds(y));
         bar1.setFillColor(Color::Green);
@@ -28,6 +29,9 @@ void avoGrowth(RenderWindow& win, RectangleShape& bar, RectangleShape&bar1, Rect
 
         win.display();
         this_thread::sleep_for(chrono::seconds(2));
+        funds = funds+100;
+        fundsInString = to_string(funds);
+        money.setString(fundsInString);
         bar.setFillColor(Color::Black);
         bar1.setFillColor(Color::Black);
         bar2.setFillColor(Color::Black);
@@ -38,5 +42,6 @@ void avoGrowth(RenderWindow& win, RectangleShape& bar, RectangleShape&bar1, Rect
         win.draw(bar2);
         win.draw(bar3);
         win.draw(bar4);
+        win.draw(money);
         win.display();
 };

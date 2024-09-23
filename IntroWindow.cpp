@@ -16,7 +16,20 @@ int main() {
     
     RenderWindow win(VideoMode(1280, 720), "Super Awesome Plant Game :3");
 
+    // money functionality
+    float funds = 0.f;
+    string fundsInString = to_string(funds);
+
+    Font font;
+    font.loadFromFile("Albertson.ttf");
     
+    Text money;
+    money.setFont(font);
+    money.setString(fundsInString);
+    money.setFillColor(Color::White);
+    money.setPosition(920, 60);
+
+    //end money
 
     // Load textures
    
@@ -261,7 +274,7 @@ int main() {
                     bar.setFillColor(Color::Green);
                     win.draw(bar);
                     win.display();
-                    avoGrowth(win, bar, bar1, bar2, bar3, bar4); // calls function
+                    avoGrowth(funds, fundsInString, money, win, bar, bar1, bar2, bar3, bar4); // calls function
                 } 
             }
         } if(event.type = Event::MouseButtonPressed) {
@@ -347,6 +360,7 @@ int main() {
         win.draw(cherries);
         //
         win.draw(shop);
+        win.draw(money);
         //
         win.display();
     }

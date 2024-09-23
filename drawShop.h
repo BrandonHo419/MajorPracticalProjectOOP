@@ -16,15 +16,7 @@ void drawShop(RenderWindow& win) {
     win.draw(shopbg);
     win.display();
 
-    while (win.isOpen())
-    {
-        sf::Event event;
-        while (win.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                win.close();
-        }
-    }
+   
 };
 
 #endif
