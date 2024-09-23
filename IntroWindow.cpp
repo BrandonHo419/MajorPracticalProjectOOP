@@ -1,6 +1,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <ctime>
+#include "Textures.h"
+#include "drawShop.h"
 
 using namespace std;
 using namespace sf;
@@ -11,10 +13,12 @@ void clickTest() {
 
 int main() {
     
-
     RenderWindow win(VideoMode(1280, 720), "Super Awesome Plant Game :3");
 
+    
+
     // Load textures
+   
     Texture bd; // create something for backdrop
     Texture minibd;
     Texture avo;
@@ -134,8 +138,7 @@ int main() {
 
 
     // load from file
-    bd.loadFromFile("bd1.jpg");
-    minibd.loadFromFile("minibd.jpg");
+    setupTextures(bd, minibd);
     avo.loadFromFile("avocado.png");
     beet.loadFromFile("beetroot.png");
     apple.loadFromFile("apple.png");
@@ -175,7 +178,6 @@ int main() {
     // Create sprites for the GFX
     Sprite backdrop(bd); // creates a sprite so it stays in systme memory
     Sprite minibackdrop(minibd);
-    Sprite buttonTest(minibd);
     Sprite avocado(avo);
     Sprite beetroot(beet);
     Sprite apples(apple);
@@ -191,7 +193,6 @@ int main() {
 
     // Set Scales
     minibackdrop.setScale(2.0, 1.5);
-    buttonTest.setScale(0.25, 0.15);
     avocado.setScale(0.14, 0.14);
     beetroot.setScale(0.14, 0.14);
     apples.setScale(0.14, 0.14);
@@ -259,9 +260,45 @@ int main() {
                     clickTest(); // calls function
                 } 
             }
-        }
+        } if(event.type = Event::MouseButtonPressed) {
+            if(event.mouseButton.button == Mouse::Left) {
+                Vector2i mousepos = Mouse::getPosition(win);
+                if(signs2.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+                    clickTest();
     };
-
+            }
+        } if(event.type = Event::MouseButtonPressed) {
+            if(event.mouseButton.button == Mouse::Left) {
+                Vector2i mousepos = Mouse::getPosition(win);
+                if(signs3.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+                    clickTest();
+    };
+        }
+        }
+        if(event.type = Event::MouseButtonPressed) {
+            if(event.mouseButton.button == Mouse::Left) {
+                Vector2i mousepos = Mouse::getPosition(win);
+                if(signs4.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+                    clickTest();
+    };
+        }
+        }
+        if(event.type = Event::MouseButtonPressed) {
+            if(event.mouseButton.button == Mouse::Left) {
+                Vector2i mousepos = Mouse::getPosition(win);
+                if(signs5.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+                    clickTest();
+    };
+        }
+        } if(event.type = Event::MouseButtonPressed) {
+            if(event.mouseButton.button == Mouse::Left) {
+                Vector2i mousepos = Mouse::getPosition(win);
+                if(shop.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+                    drawShop(win);
+    };
+        }
+        }
+        }
         // draw the windows
         win.clear();
         win.draw(backdrop);
@@ -312,4 +349,5 @@ int main() {
 
     return 0;
 };
+
 
