@@ -1,6 +1,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <ctime>
+#include <thread>
+#include <mutex>
 #include "Textures.h"
 #include "drawShop.h"
 #include "PlantGrowth.h"
@@ -15,6 +17,20 @@ void clickTest() {
 int main() {
     
     RenderWindow win(VideoMode(1280, 720), "Super Awesome Plant Game :3");
+
+    // open clock for progression
+    Clock beetClock;
+    Clock avoClock;
+    // 
+
+    // plant stuff
+    bool isBeet = false;
+    float beetModifier = 1.0;
+
+    bool isAvo = false;
+    float avoModifier = 1.0;
+
+    // end plant stuff
 
     // money functionality
     float funds = 0.f;
@@ -263,6 +279,8 @@ int main() {
     while (win.isOpen())
     {
         sf::Event event;
+        Event e;
+        Event beet;
         while (win.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
@@ -274,28 +292,34 @@ int main() {
                     bar.setFillColor(Color::Green);
                     win.draw(bar);
                     win.display();
-                    avoGrowth(funds, fundsInString, money, win, bar, bar1, bar2, bar3, bar4); // calls function
+                    isAvo = true;
+                    avoClock.restart();    
+                    avoGrowth(funds, fundsInString, money, win, bar, bar1, bar2, bar3, bar4, avoClock, isAvo, avoModifier); // calls function
                 } 
             }
-        } if(event.type = Event::MouseButtonPressed) {
+        } if(event.type == Event::MouseButtonPressed) {
             if(event.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(signs2.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
                     bar21.setFillColor(Color::Green);
                     win.draw(bar21);
                     win.display();
-                    avoGrowth(funds, fundsInString, money, win, bar21, bar22, bar23, bar24, bar25); 
+                    isBeet = true;
+                    beetClock.restart();
+                    beetGrowth(funds, fundsInString, money, win, bar21, bar22, bar23, bar24, bar25, beetClock, beetModifier, isBeet);
+                 
+                    
     };
             }
-        } if(event.type = Event::MouseButtonPressed) {
-            if(event.mouseButton.button == Mouse::Left) {
+        } if(e.type == Event::MouseButtonPressed) {
+            if(e.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(signs3.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
                     clickTest();
     };
         }
         }
-        if(event.type = Event::MouseButtonPressed) {
+        if(event.type == Event::MouseButtonPressed) {
             if(event.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(signs4.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
@@ -303,7 +327,7 @@ int main() {
     };
         }
         }
-        if(event.type = Event::MouseButtonPressed) {
+        if(event.type == Event::MouseButtonPressed) {
             if(event.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(signs5.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
@@ -318,6 +342,18 @@ int main() {
     };
         }
         }
+        }
+// flags
+        if(isBeet == true) {
+            if(beetClock.getElapsedTime().asSeconds() >= beetModifier) {
+                beetGrowth(funds, fundsInString, money, win, bar21, bar22, bar23, bar24, bar25, beetClock, beetModifier, isBeet);
+            }
+        };
+
+        if(isAvo == true) {
+            if(avoClock.getElapsedTime().asSeconds() >= avoModifier) {
+                avoGrowth(funds, fundsInString, money, win, bar, bar1, bar2, bar3, bar4, avoClock, isAvo, avoModifier);
+            }
         }
         // draw the windows
         win.clear();
@@ -366,6 +402,8 @@ int main() {
         win.draw(money);
         //
         win.display();
+
+        
     }
 
     return 0;
