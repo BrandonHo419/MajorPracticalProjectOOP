@@ -73,3 +73,5 @@ bool Shop::purchaseWorkers() {
         return false;
     }
 }
+
+// this has become very irrelevant

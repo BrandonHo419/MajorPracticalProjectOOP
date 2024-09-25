@@ -5,9 +5,16 @@ class Player {
     private:
         float money;
     public:
-        Player();
-        void setMoney(float cost);
-        float getMoney();
+        Player(){
+            money = 1000.f;
+        };
+        void setMoney(float cost) {
+            money = money-cost;
+        }
+        float getMoney() {
+            return money;
+        }
+        ~Player(){};
 };
 
 #endif

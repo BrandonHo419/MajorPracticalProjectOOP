@@ -4,17 +4,19 @@
 #include "Textures.h"
 #include "drawShop.h"
 #include "PlantGrowth.h"
+#include "Player.h"
+#include "Shop.h"
 
 using namespace std;
 using namespace sf;
 
-void clickTest() {
-    cout << "Click Testing Successful" << endl;
-};
 
 int main() {
     
     RenderWindow win(VideoMode(1280, 720), "Super Awesome Plant Game :3");
+// utilise the classes
+    Player p;
+    Shop s;
 
     // open clock for progression
     Clock beetClock;
@@ -24,7 +26,7 @@ int main() {
     Clock cherryClock;
     // 
 
-    // plant stuff
+    // plant stuff + shop
     bool isBeet = false; 
     float beetModifier = 1.0; // timer more orles
 
@@ -40,10 +42,14 @@ int main() {
     bool isCherry = false;
     float cherryModifier = 1.0; 
 
-    // end plant stuff
+    bool isPressed = false;
+
+    // end plant stuff + shop
 
     // money functionality
-    float funds = 0.f;
+    
+    float funds = p.getMoney();
+    cout << funds << endl;
     string fundsInString = to_string(funds);
 
     Font font;
@@ -72,6 +78,16 @@ int main() {
     Texture sign3;
     Texture sign4;
     Texture sign5;
+
+    Texture back;
+    Texture fore;
+    Texture fertiliser;
+    Texture house;
+    Texture worker;
+    Texture board1;
+    Texture board2;
+    Texture board3;
+    Texture shopBoard;
     // End loading textures
 
     // Load Progress Bar Shapes
@@ -229,6 +245,17 @@ int main() {
     Sprite signs3(sign3);
     Sprite signs4(sign4);
     Sprite signs5(sign5);
+
+    Sprite background(back);
+    Sprite foreground(fore);
+    Sprite shopSign1(board1);
+    Sprite shopSign2(board2);
+    Sprite shopSign3(board3);
+    Sprite shopSign(shopBoard);
+    Sprite fert(fertiliser);
+    Sprite greenhouse(house);
+    Sprite farmer(worker);
+
     // End sprites
 
     // Set Scales
@@ -244,6 +271,15 @@ int main() {
     signs3.setScale(0.4, 0.4);
     signs4.setScale(0.4, 0.4);
     signs5.setScale(0.4, 0.4);
+
+    foreground.setScale(2.0, 1.5);
+    fert.setScale(0.2f, 0.2f);
+    greenhouse.setScale(0.35f, 0.35f);
+    farmer.setScale(0.045, 0.045);
+    shopSign.setScale(0.4, 0.4);
+    shopSign1.setScale(0.4, 0.4);
+    shopSign2.setScale(0.4, 0.4);
+    shopSign3.setScale(0.4, 0.4);
     //End scales
 
     // Set positions
@@ -276,6 +312,38 @@ int main() {
     signs5.setOrigin(signsPlacement5.width/2, signsPlacement5.height/2);
     signs5.setPosition(win.getSize().x/2 - 458, signsPlacement5.height/2 + 357);
 
+    FloatRect minibackdropbounds2 = foreground.getLocalBounds();
+    foreground.setOrigin(minibackdropbounds2.width / 2, minibackdropbounds2.height / 2);
+    foreground.setPosition(win.getSize().x / 2, win.getSize().y / 2);
+
+    FloatRect fertDimensions = fert.getLocalBounds();
+    fert.setOrigin(fertDimensions.width / 2, fertDimensions.height / 2);
+    fert.setPosition(win.getSize().x/2 -458, win.getSize().y/2 - 20);
+
+    FloatRect greenhouseDimensions = greenhouse.getLocalBounds();
+    greenhouse.setOrigin(greenhouseDimensions.width / 2, greenhouseDimensions.height / 2);
+    greenhouse.setPosition(win.getSize().x/2, win.getSize().y/2 - 20);
+
+    FloatRect workerDimensions = farmer.getLocalBounds();
+    farmer.setOrigin(workerDimensions.width / 2, workerDimensions.height / 2);
+    farmer.setPosition(win.getSize().x/2 + 458, win.getSize().y/2 - 20);
+
+    FloatRect signDimensions = shopSign1.getLocalBounds();
+    shopSign1.setOrigin(signDimensions.width / 2, signDimensions.height / 2);
+    shopSign1.setPosition(win.getSize().x/2 -458, win.getSize().y/2 - 20);
+
+    FloatRect signDimensions2 = shopSign2.getLocalBounds();
+    shopSign2.setOrigin(signDimensions.width / 2, signDimensions.height / 2);
+    shopSign2.setPosition(win.getSize().x/2, win.getSize().y/2 - 20);
+
+    FloatRect signDimensions3 = shopSign3.getLocalBounds();
+    shopSign3.setOrigin(signDimensions3.width / 2, signDimensions3.height / 2);
+    shopSign3.setPosition(win.getSize().x/2 + 458, win.getSize().y/2 - 20);
+
+    FloatRect shopDimensions2 = shopSign.getLocalBounds();
+    shopSign.setOrigin(shopDimensions2.width / 2, shopDimensions2.height / 2);
+    shopSign.setPosition(win.getSize().x/2, win.getSize().y/2 - 200);
+
     // New position
     avocado.setPosition(150, 100);
     beetroot.setPosition(150, 200);
@@ -299,24 +367,34 @@ int main() {
             if(event.mouseButton.button == Mouse::Left) { // checks whether it was a left mouse button press
                 Vector2i mousepos = Mouse::getPosition(win); // retrieves the current mouse position (x and y)
                 if(signs.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) { // returns a rectangle of bounds and static_cast converts 2i to 2f
-                    bar.setFillColor(Color::Green);
-                    win.draw(bar);
-                    win.display();
-                    isAvo = true;
-                    avoClock.restart();    
-                    avoGrowth(funds, fundsInString, money, win, bar, bar1, bar2, bar3, bar4, avoClock, isAvo, avoModifier); // calls function
+                    if(funds >= 10) {
+                        funds = funds-10;
+                        bar.setFillColor(Color::Green);
+                        win.draw(bar);
+                        win.draw(money);
+                        win.display();
+                        isAvo = true;
+                        avoClock.restart();    
+                        avoGrowth(funds, fundsInString, money, win, bar, bar1, bar2, bar3, bar4, avoClock, isAvo, avoModifier); // calls function
+                        
+                    }
                 } 
             }
         } if(event.type == Event::MouseButtonPressed) {
             if(event.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(signs2.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
-                    bar21.setFillColor(Color::Green);
-                    win.draw(bar21);
-                    win.display();
-                    isBeet = true;
-                    beetClock.restart();
-                    beetGrowth(funds, fundsInString, money, win, bar21, bar22, bar23, bar24, bar25, beetClock, beetModifier, isBeet);
+                    if(funds >= 50) {
+                        funds = funds-50;
+                        bar21.setFillColor(Color::Green);
+                        win.draw(bar21);
+                        win.draw(money);
+                        win.display();
+                        isBeet = true;
+                        beetClock.restart();
+                        beetGrowth(funds, fundsInString, money, win, bar21, bar22, bar23, bar24, bar25, beetClock, beetModifier, isBeet);
+                        
+                    }; // make else condition pop up for poorness
                  
                     
     };
@@ -338,7 +416,13 @@ int main() {
             if(event.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(signs4.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
-                    clickTest();
+                    bar41.setFillColor(Color::Green);
+                    win.draw(bar41);
+                    win.display();
+                    isBanana = true;
+                    bananaClock.restart();
+                    bananaGrowth(funds, fundsInString, money, win, bar41, bar42, bar43, bar44, bar45, bananaClock, bananaModifier, isBanana);
+
     };
         }
         }
@@ -346,7 +430,12 @@ int main() {
             if(event.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(signs5.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
-                    clickTest();
+                    bar51.setFillColor(Color::Green);
+                    win.draw(bar51);
+                    win.display();
+                    isCherry = true;
+                    cherryClock.restart();
+                    cherryGrowth(funds, fundsInString, money, win, bar51, bar52, bar53, bar54, bar55, cherryClock, cherryModifier, isCherry);
     };
         }
         } if(event.type = Event::MouseButtonPressed) {
@@ -354,6 +443,7 @@ int main() {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(shop.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
                     drawShop(win);
+                    win.display();
     };
         }
         }
@@ -373,6 +463,18 @@ int main() {
         if(isApple == true) {
             if(appleClock.getElapsedTime().asSeconds() >= appleModifier) {
                 appleGrowth(funds, fundsInString, money, win, bar31, bar32, bar33, bar34, bar35, appleClock, appleModifier, isApple);
+            }
+        }
+
+        if(isBanana == true) {
+            if(bananaClock.getElapsedTime().asSeconds() >= bananaModifier) {
+                bananaGrowth(funds, fundsInString, money, win, bar41, bar42, bar43, bar44, bar45, bananaClock, bananaModifier, isBanana);
+            }
+        }
+
+        if(isCherry == true) {
+            if(cherryClock.getElapsedTime().asSeconds() >= cherryModifier) {
+                appleGrowth(funds, fundsInString, money, win, bar51, bar52, bar53, bar54, bar55, cherryClock, cherryModifier, isCherry);
             }
         }
         // draw the windows

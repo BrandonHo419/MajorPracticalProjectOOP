@@ -56,7 +56,7 @@ int main() {
         std::cout << "Error loading sign\n";
     }
 
-    if (!fertiliser.loadFromFile("file.png")) {
+    if (!fertiliser.loadFromFile("fertiliser.png")) {
         std::cout << "Error loading fertiliser texture\n";
         return -1;
     }

@@ -11,3 +11,5 @@ void Player::setMoney(float cost) {
 float Player::getMoney() {
     return money;
 }
+
+// all of this is irrelevant
