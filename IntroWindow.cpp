@@ -1,8 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <ctime>
-#include <thread>
-#include <mutex>
 #include "Textures.h"
 #include "drawShop.h"
 #include "PlantGrowth.h"
@@ -21,14 +19,26 @@ int main() {
     // open clock for progression
     Clock beetClock;
     Clock avoClock;
+    Clock appleClock;
+    Clock bananaClock;
+    Clock cherryClock;
     // 
 
     // plant stuff
-    bool isBeet = false;
-    float beetModifier = 1.0;
+    bool isBeet = false; 
+    float beetModifier = 1.0; // timer more orles
 
     bool isAvo = false;
     float avoModifier = 1.0;
+
+    bool isApple = false;
+    float appleModifier = 1.0; 
+
+    bool isBanana = false;
+    float bananaModifier = 1.0; 
+
+    bool isCherry = false;
+    float cherryModifier = 1.0; 
 
     // end plant stuff
 
@@ -311,11 +321,16 @@ int main() {
                     
     };
             }
-        } if(e.type == Event::MouseButtonPressed) {
-            if(e.mouseButton.button == Mouse::Left) {
+        } if(event.type == Event::MouseButtonPressed) {
+            if(event.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(signs3.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
-                    clickTest();
+                    bar31.setFillColor(Color::Green);
+                    win.draw(bar31);
+                    win.display();
+                    isApple = true;
+                    appleClock.restart();
+                    appleGrowth(funds, fundsInString, money, win, bar31, bar32, bar33, bar34, bar35, appleClock, appleModifier, isApple);
     };
         }
         }
@@ -353,6 +368,11 @@ int main() {
         if(isAvo == true) {
             if(avoClock.getElapsedTime().asSeconds() >= avoModifier) {
                 avoGrowth(funds, fundsInString, money, win, bar, bar1, bar2, bar3, bar4, avoClock, isAvo, avoModifier);
+            }
+        }
+        if(isApple == true) {
+            if(appleClock.getElapsedTime().asSeconds() >= appleModifier) {
+                appleGrowth(funds, fundsInString, money, win, bar31, bar32, bar33, bar34, bar35, appleClock, appleModifier, isApple);
             }
         }
         // draw the windows

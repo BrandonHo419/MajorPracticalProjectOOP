@@ -107,3 +107,156 @@ void beetGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& 
     
    
 };
+
+void appleGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar31, RectangleShape&bar32, RectangleShape&bar33, RectangleShape&bar34, RectangleShape&bar35, Clock&appleClock, float&appleModifier, bool&isApple) {
+    float profit = 10;
+    int x = 0;
+
+
+    float currentProgress =appleClock.getElapsedTime().asSeconds();
+        if(currentProgress >=appleModifier) {
+            bar32.setFillColor(Color::Green);
+            win.draw(bar32);
+        }
+        if(currentProgress >=appleModifier*2) {
+        bar33.setFillColor(Color::Green);
+        win.draw(bar33);
+        
+        }
+        if(currentProgress >= appleModifier*3) {
+        bar34.setFillColor(Color::Green);
+        win.draw(bar34);
+        
+        }
+        if(currentProgress >=appleModifier*4) {
+        bar35.setFillColor(Color::Green);
+        win.draw(bar35);
+        }
+        
+        if(currentProgress >= appleModifier*5) {
+        funds = funds+profit;
+        fundsInString = to_string(funds);
+        money.setString(fundsInString);
+        bar31.setFillColor(Color::Black);
+        bar32.setFillColor(Color::Black);
+        bar33.setFillColor(Color::Black);
+        bar34.setFillColor(Color::Black);
+        bar35.setFillColor(Color::Black);
+        appleClock.restart();
+        win.draw(bar31);
+        win.draw(bar32);
+        win.draw(bar33);
+        win.draw(bar34);
+        win.draw(bar35);
+        win.draw(money);
+        win.display();
+        isApple = false;
+        appleClock.restart();
+       
+        }
+        win.display();
+    
+   
+};
+
+void bananaGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar41, RectangleShape&bar42, RectangleShape&bar43, RectangleShape&bar44, RectangleShape&bar45, Clock&bananaClock, float&bananaModifier, bool&isBanana) {
+    float profit = 10;
+    int x = 0;
+
+
+    float currentProgress =bananaClock.getElapsedTime().asSeconds();
+        if(currentProgress >=bananaModifier) {
+            bar42.setFillColor(Color::Green);
+            win.draw(bar42);
+        }
+        if(currentProgress >=bananaModifier*2) {
+        bar43.setFillColor(Color::Green);
+        win.draw(bar43);
+        
+        }
+        if(currentProgress >= bananaModifier*3) {
+        bar44.setFillColor(Color::Green);
+        win.draw(bar44);
+        
+        }
+        if(currentProgress >=bananaModifier*4) {
+        bar45.setFillColor(Color::Green);
+        win.draw(bar45);
+        }
+        
+        if(currentProgress >= bananaModifier*5) {
+        funds = funds+profit;
+        fundsInString = to_string(funds);
+        money.setString(fundsInString);
+        bar41.setFillColor(Color::Black);
+        bar42.setFillColor(Color::Black);
+        bar43.setFillColor(Color::Black);
+        bar44.setFillColor(Color::Black);
+        bar45.setFillColor(Color::Black);
+        bananaClock.restart();
+        win.draw(bar41);
+        win.draw(bar42);
+        win.draw(bar43);
+        win.draw(bar44);
+        win.draw(bar45);
+        win.draw(money);
+        win.display();
+        isBanana = false;
+        bananaClock.restart();
+       
+        }
+        win.display();
+    
+   
+};
+
+void cherryGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar51, RectangleShape&bar52, RectangleShape&bar53, RectangleShape&bar54, RectangleShape&bar55, Clock&cherryClock, float&cherryModifier, bool&isCherry) {
+    float profit = 10;
+    int x = 0;
+
+
+    float currentProgress =cherryClock.getElapsedTime().asSeconds();
+        if(currentProgress >=cherryModifier) {
+            bar52.setFillColor(Color::Green);
+            win.draw(bar52);
+        }
+        if(currentProgress >=cherryModifier*2) {
+        bar53.setFillColor(Color::Green);
+        win.draw(bar53);
+        
+        }
+        if(currentProgress >= cherryModifier*3) {
+        bar54.setFillColor(Color::Green);
+        win.draw(bar54);
+        
+        }
+        if(currentProgress >=cherryModifier*4) {
+        bar55.setFillColor(Color::Green);
+        win.draw(bar55);
+        }
+        
+        if(currentProgress >= cherryModifier*5) {
+        funds = funds+profit;
+        fundsInString = to_string(funds);
+        money.setString(fundsInString);
+        bar51.setFillColor(Color::Black);
+        bar52.setFillColor(Color::Black);
+        bar53.setFillColor(Color::Black);
+        bar54.setFillColor(Color::Black);
+        bar55.setFillColor(Color::Black);
+        cherryClock.restart();
+        win.draw(bar51);
+        win.draw(bar52);
+        win.draw(bar53);
+        win.draw(bar54);
+        win.draw(bar55);
+        win.draw(money);
+        win.display();
+        isCherry = false;
+        cherryClock.restart();
+       
+        }
+        win.display();
+    
+   
+};
