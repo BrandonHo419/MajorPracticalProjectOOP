@@ -9,7 +9,8 @@ using namespace sf;
 
 void drawShop(RenderWindow& win) {
     Texture shopbd;
-    shopbd.loadFromFile("beetroot.png");
+    win.clear();
+    shopbd.loadFromFile("Ghouse.png");
     Sprite shopbg(shopbd);
     shopbg.setScale(1, 1);
     shopbg.setPosition(480, 200);

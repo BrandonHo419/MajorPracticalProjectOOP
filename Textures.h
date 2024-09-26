@@ -69,4 +69,5 @@ void setScales(RenderWindow& win, Sprite& minibackdrop, Sprite&avocado, Sprite&b
     signs5.setPosition(win.getSize().x/2 - 458, signsPlacement5.height/2 + 357);
 };
 
+
 #endif

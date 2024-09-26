@@ -8,6 +8,9 @@
 #include "Player.h"
 #include "Shop.h"
 
+using namespace std;
+using namespace sf;
+
 #ifndef REQUIREMENTS_H
 #define REQUIREMENTS_H
 

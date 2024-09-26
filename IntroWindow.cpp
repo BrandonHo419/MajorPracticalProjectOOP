@@ -1,15 +1,30 @@
-#include "Requirements.h"
+#include "Render.h"
+#include <SFML/Audio.hpp>
 
 using namespace std;
 using namespace sf;
 
 
 int main() {
+
     
+    bool ee = false;
     RenderWindow win(VideoMode(1280, 720), "Super Awesome Plant Game :3");
 // utilise the classes
     Player p;
     Shop s;
+
+    SoundBuffer buffer;
+
+
+Sound eesound(buffer);
+
+Texture rawr;
+
+
+Sprite rawrs;
+rawrs.setTexture(rawr);
+rawrs.setScale(1.9f, 1.9f);
 
     // open clock for progression
     Clock beetClock;
@@ -21,19 +36,19 @@ int main() {
 
     // plant stuff + shop
     bool isBeet = false; 
-    float beetModifier = 1.0; // timer more orles
+    float beetModifier = 1000; // timer more orles
 
     bool isAvo = false;
-    float avoModifier = 1.0;
+    float avoModifier = 1000;
 
     bool isApple = false;
-    float appleModifier = 1.0; 
+    float appleModifier = 1000; 
 
     bool isBanana = false;
-    float bananaModifier = 1.0; 
+    float bananaModifier = 1000; 
 
     bool isCherry = false;
-    float cherryModifier = 1.0; 
+    float cherryModifier = 1000; 
 
     bool isPressed = false;
 
@@ -57,6 +72,7 @@ int main() {
     //end money
 
     // Load textures
+
    
     Texture bd; // create something for backdrop
     Texture minibd;
@@ -304,8 +320,6 @@ int main() {
     while (win.isOpen())
     {
         sf::Event event;
-        Event e;
-        Event beet;
         while (win.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
@@ -389,40 +403,68 @@ int main() {
             if(event.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(shop.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+                    win.clear();
+                    isPressed = true;
                     drawShop(win);
-                    win.display();
+                   
     };
         }
+        } if (Keyboard::isKeyPressed(Keyboard::Left) &&
+        Keyboard::isKeyPressed(Keyboard::Right) &&
+        Keyboard::isKeyPressed(Keyboard::Up)) {
+        win.clear();
+        eesound.play();
+        ee = true;
+         
+        Clock c; // Start the clock when ee becomes true
+
+        // Loop to wait for 3 seconds
+        while (ee) {
+            if (c.getElapsedTime().asSeconds() >= 3) {
+                ee = false; // Stop the flag after 3 seconds
+                eesound.stop(); // Stop the sound
+            } else {
+                win.clear();
+                win.draw(rawrs);
+                win.display();
+            }
         }
-        }
-// flags
+    }
+
+     
+        
+    }
         if(isBeet == true) {
-            if(beetClock.getElapsedTime().asSeconds() >= beetModifier) {
+            if(beetClock.getElapsedTime().asMilliseconds() >= beetModifier) {
                 beetGrowth(funds, fundsInString, money, win, bar21, bar22, bar23, bar24, bar25, beetClock, beetModifier, isBeet);
             }
         };
 
         if(isAvo == true) {
-            if(avoClock.getElapsedTime().asSeconds() >= avoModifier) {
+            if(avoClock.getElapsedTime().asMilliseconds() >= avoModifier) {
                 avoGrowth(funds, fundsInString, money, win, bar, bar1, bar2, bar3, bar4, avoClock, isAvo, avoModifier);
             }
         }
         if(isApple == true) {
-            if(appleClock.getElapsedTime().asSeconds() >= appleModifier) {
+            if(appleClock.getElapsedTime().asMilliseconds() >= appleModifier) {
                 appleGrowth(funds, fundsInString, money, win, bar31, bar32, bar33, bar34, bar35, appleClock, appleModifier, isApple);
             }
         }
 
         if(isBanana == true) {
-            if(bananaClock.getElapsedTime().asSeconds() >= bananaModifier) {
+            if(bananaClock.getElapsedTime().asMilliseconds() >= bananaModifier) {
                 bananaGrowth(funds, fundsInString, money, win, bar41, bar42, bar43, bar44, bar45, bananaClock, bananaModifier, isBanana);
             }
         }
 
         if(isCherry == true) {
-            if(cherryClock.getElapsedTime().asSeconds() >= cherryModifier) {
+            if(cherryClock.getElapsedTime().asMilliseconds() >= cherryModifier) {
                 appleGrowth(funds, fundsInString, money, win, bar51, bar52, bar53, bar54, bar55, cherryClock, cherryModifier, isCherry);
             }
+        }
+        if(isPressed == true) {
+            drawShop(win);
+            isPressed = false;
         }
         // draw the windows
         win.clear();

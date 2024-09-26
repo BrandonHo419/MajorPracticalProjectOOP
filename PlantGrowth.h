@@ -10,8 +10,7 @@ using namespace sf;
 void avoGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar, RectangleShape&bar1, RectangleShape&bar2, RectangleShape&bar3, RectangleShape&bar4, Clock& avoClock, bool& isAvo, float& avoModifier) {
     // lets say avo growth time is 25s
     float profit = 100;
-    int y = 1;
-        float currentProgress = avoClock.getElapsedTime().asSeconds();
+        float currentProgress = avoClock.getElapsedTime().asMilliseconds();
         if(currentProgress >=avoModifier) {
             bar1.setFillColor(Color::Green);
             win.draw(bar1);
@@ -59,10 +58,8 @@ void avoGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& w
 
 void beetGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar21, RectangleShape&bar22, RectangleShape&bar23, RectangleShape&bar24, RectangleShape&bar25, Clock&beetClock, float&beetModifier, bool&isBeet) {
     float profit = 50;
-    int x = 0;
 
-
-    float currentProgress = beetClock.getElapsedTime().asSeconds();
+    float currentProgress = beetClock.getElapsedTime().asMilliseconds();
         if(currentProgress >=beetModifier) {
             bar22.setFillColor(Color::Green);
             win.draw(bar22);
@@ -113,7 +110,7 @@ void appleGrowth(float& funds, string& fundsInString, Text& money, RenderWindow&
     int x = 0;
 
 
-    float currentProgress =appleClock.getElapsedTime().asSeconds();
+    float currentProgress =appleClock.getElapsedTime().asMilliseconds();
         if(currentProgress >=appleModifier) {
             bar32.setFillColor(Color::Green);
             win.draw(bar32);
@@ -164,7 +161,7 @@ void bananaGrowth(float& funds, string& fundsInString, Text& money, RenderWindow
     int x = 0;
 
 
-    float currentProgress =bananaClock.getElapsedTime().asSeconds();
+    float currentProgress =bananaClock.getElapsedTime().asMilliseconds();
         if(currentProgress >=bananaModifier) {
             bar42.setFillColor(Color::Green);
             win.draw(bar42);
@@ -215,7 +212,7 @@ void cherryGrowth(float& funds, string& fundsInString, Text& money, RenderWindow
     int x = 0;
 
 
-    float currentProgress =cherryClock.getElapsedTime().asSeconds();
+    float currentProgress =cherryClock.getElapsedTime().asMilliseconds();
         if(currentProgress >=cherryModifier) {
             bar52.setFillColor(Color::Green);
             win.draw(bar52);
