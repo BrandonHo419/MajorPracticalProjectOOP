@@ -1,4 +1,5 @@
 #include "Render.h"
+#include "Audio.h"
 #include <SFML/Audio.hpp>
 
 using namespace std;
@@ -13,30 +14,33 @@ int main() {
     Player p;
     Shop s;
 
+    // load sound buffers
+    Audio a;
+    
 
     // open clock for progression
     Clock beetClock;
-    Clock avoClock;
-    Clock appleClock;
-    Clock bananaClock;
-    Clock cherryClock;
+    Clock asparagusClock;
+    Clock tomatoClock;
+    Clock peasClock;
+    Clock watermelonClock;
     // 
 
     // plant stuff + shop
     bool isBeet = false; 
     float beetModifier = 1000; // timer more orles
 
-    bool isAvo = false;
-    float avoModifier = 1000;
+    bool isasparagus = false;
+    float asparagusModifier = 1000;
 
-    bool isApple = false;
-    float appleModifier = 1000; 
+    bool istomato = false;
+    float tomatoModifier = 1000; 
 
-    bool isBanana = false;
-    float bananaModifier = 1000; 
+    bool ispeas = false;
+    float peasModifier = 1000; 
 
-    bool isCherry = false;
-    float cherryModifier = 1000; 
+    bool iswatermelon = false;
+    float watermelonModifier = 1000; 
 
     bool isPressed = false;
 
@@ -45,7 +49,6 @@ int main() {
     // money functionality
     
     float funds = p.getMoney();
-    cout << funds << endl;
     string fundsInString = to_string(funds);
 
     Font font;
@@ -64,11 +67,11 @@ int main() {
    
     Texture bd; // create something for backdrop
     Texture minibd;
-    Texture avo;
+    Texture asparagus;
     Texture beet;
-    Texture apple;
-    Texture banana;
-    Texture cherry;
+    Texture tomato;
+    Texture peas;
+    Texture watermelon;
     Texture shopButton;
     Texture sign;
     Texture sign2;
@@ -191,7 +194,7 @@ int main() {
 
 
     // load from file
-    setupTextures(bd, minibd, avo, beet, apple, banana, cherry, shopButton, sign, sign2, sign3, sign4, sign5);
+    setupTextures(bd, minibd, asparagus, beet, tomato, peas, watermelon, shopButton, sign, sign2, sign3, sign4, sign5);
     
     // end load from file
     
@@ -207,8 +210,8 @@ int main() {
         return -1; 
     }
 
-    if (!avo.loadFromFile("avocado.png")) {
-        cerr << "Error loading avocado texture" << endl;
+    if (!asparagus.loadFromFile("asparaguscado.png")) {
+        cerr << "Error loading asparaguscado texture" << endl;
         return -1; 
     };
 
@@ -221,11 +224,11 @@ int main() {
     // Create sprites for the GFX
     Sprite backdrop(bd); // creates a sprite so it stays in systme memory
     Sprite minibackdrop(minibd);
-    Sprite avocado(avo);
+    Sprite asparaguscado(asparagus);
     Sprite beetroot(beet);
-    Sprite apples(apple);
-    Sprite bananas(banana);
-    Sprite cherries(cherry);
+    Sprite tomatos(tomato);
+    Sprite peass(peas);
+    Sprite cherries(watermelon);
     Sprite shop(shopButton);
     Sprite signs(sign);
     Sprite signs2(sign2);
@@ -247,7 +250,7 @@ int main() {
     // End sprites
 
     // Set Scales
-    setScales(win, minibackdrop, avocado, beetroot, apples, bananas, cherries, shop, signs, signs2, signs3, signs4, signs5); // also sets positions of these
+    setScales(win, minibackdrop, asparaguscado, beetroot, tomatos, peass, cherries, shop, signs, signs2, signs3, signs4, signs5); // also sets positions of these
     
     // shop scales
     foreground.setScale(2.0, 1.5);
@@ -296,10 +299,10 @@ int main() {
     shopSign.setPosition(win.getSize().x/2, win.getSize().y/2 - 200);
 
     // New position
-    avocado.setPosition(150, 100);
+    asparaguscado.setPosition(150, 100);
     beetroot.setPosition(150, 200);
-    apples.setPosition(150, 300);
-    bananas.setPosition(150, 400);
+    tomatos.setPosition(150, 300);
+    peass.setPosition(150, 400);
     cherries.setPosition(150, 500);
     
     // End positions
@@ -322,10 +325,10 @@ int main() {
                         win.draw(bar);
                         win.draw(money);
                         win.display();
-                        isAvo = true;
-                        avoClock.restart();    
-                        avoGrowth(funds, fundsInString, money, win, bar, bar1, bar2, bar3, bar4, avoClock, isAvo, avoModifier); // calls function
-                        
+                        isasparagus = true;
+                        asparagusClock.restart();    
+                        asparagusGrowth(funds, fundsInString, money, win, bar, bar1, bar2, bar3, bar4, asparagusClock, isasparagus, asparagusModifier); // calls function
+                        a.playMoneySound();
                     }
                 } 
             }
@@ -342,7 +345,7 @@ int main() {
                         isBeet = true;
                         beetClock.restart();
                         beetGrowth(funds, fundsInString, money, win, bar21, bar22, bar23, bar24, bar25, beetClock, beetModifier, isBeet);
-                        
+                        a.playMoneySound();
                     }; // make else condition pop up for poorness
                  
                     
@@ -352,12 +355,16 @@ int main() {
             if(event.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(signs3.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+                    if(funds >= 150) {
+                    funds = funds-50;
                     bar31.setFillColor(Color::Green);
                     win.draw(bar31);
                     win.display();
-                    isApple = true;
-                    appleClock.restart();
-                    appleGrowth(funds, fundsInString, money, win, bar31, bar32, bar33, bar34, bar35, appleClock, appleModifier, isApple);
+                    istomato = true;
+                    tomatoClock.restart();
+                    tomatoGrowth(funds, fundsInString, money, win, bar31, bar32, bar33, bar34, bar35, tomatoClock, tomatoModifier, istomato);
+                    a.playMoneySound();
+                    }
     };
         }
         }
@@ -365,13 +372,15 @@ int main() {
             if(event.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(signs4.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+                    if(funds < 1100) {
                     bar41.setFillColor(Color::Green);
                     win.draw(bar41);
                     win.display();
-                    isBanana = true;
-                    bananaClock.restart();
-                    bananaGrowth(funds, fundsInString, money, win, bar41, bar42, bar43, bar44, bar45, bananaClock, bananaModifier, isBanana);
-
+                    ispeas = true;
+                    peasClock.restart();
+                    peasGrowth(funds, fundsInString, money, win, bar41, bar42, bar43, bar44, bar45, peasClock, peasModifier, ispeas);
+                    a.playMoneySound();
+                    }
     };
         }
         }
@@ -379,12 +388,15 @@ int main() {
             if(event.mouseButton.button == Mouse::Left) {
                 Vector2i mousepos = Mouse::getPosition(win);
                 if(signs5.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+                    if(funds < 300) {
                     bar51.setFillColor(Color::Green);
                     win.draw(bar51);
                     win.display();
-                    isCherry = true;
-                    cherryClock.restart();
-                    cherryGrowth(funds, fundsInString, money, win, bar51, bar52, bar53, bar54, bar55, cherryClock, cherryModifier, isCherry);
+                    iswatermelon = true;
+                    watermelonClock.restart();
+                    watermelonGrowth(funds, fundsInString, money, win, bar51, bar52, bar53, bar54, bar55, watermelonClock, watermelonModifier, iswatermelon);
+                    a.playMoneySound();
+                    }
     };
         }
         } if(event.type = Event::MouseButtonPressed) {
@@ -408,26 +420,26 @@ int main() {
             }
         };
 
-        if(isAvo == true) {
-            if(avoClock.getElapsedTime().asMilliseconds() >= avoModifier) {
-                avoGrowth(funds, fundsInString, money, win, bar, bar1, bar2, bar3, bar4, avoClock, isAvo, avoModifier);
+        if(isasparagus == true) {
+            if(asparagusClock.getElapsedTime().asMilliseconds() >= asparagusModifier) {
+                asparagusGrowth(funds, fundsInString, money, win, bar, bar1, bar2, bar3, bar4, asparagusClock, isasparagus, asparagusModifier);
             }
         }
-        if(isApple == true) {
-            if(appleClock.getElapsedTime().asMilliseconds() >= appleModifier) {
-                appleGrowth(funds, fundsInString, money, win, bar31, bar32, bar33, bar34, bar35, appleClock, appleModifier, isApple);
-            }
-        }
-
-        if(isBanana == true) {
-            if(bananaClock.getElapsedTime().asMilliseconds() >= bananaModifier) {
-                bananaGrowth(funds, fundsInString, money, win, bar41, bar42, bar43, bar44, bar45, bananaClock, bananaModifier, isBanana);
+        if(istomato == true) {
+            if(tomatoClock.getElapsedTime().asMilliseconds() >= tomatoModifier) {
+                tomatoGrowth(funds, fundsInString, money, win, bar31, bar32, bar33, bar34, bar35, tomatoClock, tomatoModifier, istomato);
             }
         }
 
-        if(isCherry == true) {
-            if(cherryClock.getElapsedTime().asMilliseconds() >= cherryModifier) {
-                appleGrowth(funds, fundsInString, money, win, bar51, bar52, bar53, bar54, bar55, cherryClock, cherryModifier, isCherry);
+        if(ispeas == true) {
+            if(peasClock.getElapsedTime().asMilliseconds() >= peasModifier) {
+                peasGrowth(funds, fundsInString, money, win, bar41, bar42, bar43, bar44, bar45, peasClock, peasModifier, ispeas);
+            }
+        }
+
+        if(iswatermelon == true) {
+            if(watermelonClock.getElapsedTime().asMilliseconds() >= watermelonModifier) {
+                tomatoGrowth(funds, fundsInString, money, win, bar51, bar52, bar53, bar54, bar55, watermelonClock, watermelonModifier, iswatermelon);
             }
         }
         if(isPressed == true) {
@@ -471,16 +483,17 @@ int main() {
         win.draw(bar54);
         win.draw(bar55);
         //
-        win.draw(avocado);
+        win.draw(asparaguscado);
         win.draw(beetroot);
-        win.draw(apples);
-        win.draw(bananas);
+        win.draw(tomatos);
+        win.draw(peass);
         win.draw(cherries);
         //
         win.draw(shop);
         win.draw(money);
         //
         win.display();
+        a.playSounds();
 
         
     }

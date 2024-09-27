@@ -3,34 +3,36 @@
 #include <chrono>
 #include <thread>
 #include <SFML/Graphics.hpp>
+#ifndef PLANTGROWTH_H
+#define PLANTGROWTH_H
 
 using namespace std;
 using namespace sf;
 
-void avoGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar, RectangleShape&bar1, RectangleShape&bar2, RectangleShape&bar3, RectangleShape&bar4, Clock& avoClock, bool& isAvo, float& avoModifier) {
-    // lets say avo growth time is 25s
+void asparagusGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar, RectangleShape&bar1, RectangleShape&bar2, RectangleShape&bar3, RectangleShape&bar4, Clock& asparagusClock, bool& isasparagus, float& asparagusModifier) {
+    // lets say asparagus growth time is 25s
     float profit = 100;
-        float currentProgress = avoClock.getElapsedTime().asMilliseconds();
-        if(currentProgress >=avoModifier) {
+        float currentProgress = asparagusClock.getElapsedTime().asMilliseconds();
+        if(currentProgress >=asparagusModifier) {
             bar1.setFillColor(Color::Green);
             win.draw(bar1);
         }
-        if(currentProgress >=avoModifier*2) {
+        if(currentProgress >=asparagusModifier*2) {
         bar2.setFillColor(Color::Green);
         win.draw(bar2);
         
         }
-        if(currentProgress >= avoModifier*3) {
+        if(currentProgress >= asparagusModifier*3) {
         bar3.setFillColor(Color::Green);
         win.draw(bar3);
         
         }
-        if(currentProgress >=avoModifier*4) {
+        if(currentProgress >=asparagusModifier*4) {
         bar4.setFillColor(Color::Green);
         win.draw(bar4);
         }
         
-        if(currentProgress >= avoModifier*5) {
+        if(currentProgress >= asparagusModifier*5) {
         funds = funds+profit;
         fundsInString = to_string(funds);
         money.setString(fundsInString);
@@ -39,7 +41,7 @@ void avoGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& w
         bar3.setFillColor(Color::Black);
         bar4.setFillColor(Color::Black);
         bar.setFillColor(Color::Black);
-        avoClock.restart();
+        asparagusClock.restart();
         win.draw(bar1);
         win.draw(bar2);
         win.draw(bar3);
@@ -47,8 +49,8 @@ void avoGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& w
         win.draw(bar);
         win.draw(money);
         win.display();
-        isAvo = false;
-        avoClock.restart();
+        isasparagus = false;
+        asparagusClock.restart();
        
         }
         win.display();
@@ -105,32 +107,32 @@ void beetGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& 
    
 };
 
-void appleGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar31, RectangleShape&bar32, RectangleShape&bar33, RectangleShape&bar34, RectangleShape&bar35, Clock&appleClock, float&appleModifier, bool&isApple) {
+void tomatoGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar31, RectangleShape&bar32, RectangleShape&bar33, RectangleShape&bar34, RectangleShape&bar35, Clock&tomatoClock, float&tomatoModifier, bool&istomato) {
     float profit = 10;
     int x = 0;
 
 
-    float currentProgress =appleClock.getElapsedTime().asMilliseconds();
-        if(currentProgress >=appleModifier) {
+    float currentProgress =tomatoClock.getElapsedTime().asMilliseconds();
+        if(currentProgress >=tomatoModifier) {
             bar32.setFillColor(Color::Green);
             win.draw(bar32);
         }
-        if(currentProgress >=appleModifier*2) {
+        if(currentProgress >=tomatoModifier*2) {
         bar33.setFillColor(Color::Green);
         win.draw(bar33);
         
         }
-        if(currentProgress >= appleModifier*3) {
+        if(currentProgress >= tomatoModifier*3) {
         bar34.setFillColor(Color::Green);
         win.draw(bar34);
         
         }
-        if(currentProgress >=appleModifier*4) {
+        if(currentProgress >=tomatoModifier*4) {
         bar35.setFillColor(Color::Green);
         win.draw(bar35);
         }
         
-        if(currentProgress >= appleModifier*5) {
+        if(currentProgress >= tomatoModifier*5) {
         funds = funds+profit;
         fundsInString = to_string(funds);
         money.setString(fundsInString);
@@ -139,7 +141,7 @@ void appleGrowth(float& funds, string& fundsInString, Text& money, RenderWindow&
         bar33.setFillColor(Color::Black);
         bar34.setFillColor(Color::Black);
         bar35.setFillColor(Color::Black);
-        appleClock.restart();
+        tomatoClock.restart();
         win.draw(bar31);
         win.draw(bar32);
         win.draw(bar33);
@@ -147,8 +149,8 @@ void appleGrowth(float& funds, string& fundsInString, Text& money, RenderWindow&
         win.draw(bar35);
         win.draw(money);
         win.display();
-        isApple = false;
-        appleClock.restart();
+        istomato = false;
+        tomatoClock.restart();
        
         }
         win.display();
@@ -156,32 +158,32 @@ void appleGrowth(float& funds, string& fundsInString, Text& money, RenderWindow&
    
 };
 
-void bananaGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar41, RectangleShape&bar42, RectangleShape&bar43, RectangleShape&bar44, RectangleShape&bar45, Clock&bananaClock, float&bananaModifier, bool&isBanana) {
+void peasGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar41, RectangleShape&bar42, RectangleShape&bar43, RectangleShape&bar44, RectangleShape&bar45, Clock&peasClock, float&peasModifier, bool&ispeas) {
     float profit = 10;
     int x = 0;
 
 
-    float currentProgress =bananaClock.getElapsedTime().asMilliseconds();
-        if(currentProgress >=bananaModifier) {
+    float currentProgress =peasClock.getElapsedTime().asMilliseconds();
+        if(currentProgress >=peasModifier) {
             bar42.setFillColor(Color::Green);
             win.draw(bar42);
         }
-        if(currentProgress >=bananaModifier*2) {
+        if(currentProgress >=peasModifier*2) {
         bar43.setFillColor(Color::Green);
         win.draw(bar43);
         
         }
-        if(currentProgress >= bananaModifier*3) {
+        if(currentProgress >= peasModifier*3) {
         bar44.setFillColor(Color::Green);
         win.draw(bar44);
         
         }
-        if(currentProgress >=bananaModifier*4) {
+        if(currentProgress >=peasModifier*4) {
         bar45.setFillColor(Color::Green);
         win.draw(bar45);
         }
         
-        if(currentProgress >= bananaModifier*5) {
+        if(currentProgress >= peasModifier*5) {
         funds = funds+profit;
         fundsInString = to_string(funds);
         money.setString(fundsInString);
@@ -190,7 +192,7 @@ void bananaGrowth(float& funds, string& fundsInString, Text& money, RenderWindow
         bar43.setFillColor(Color::Black);
         bar44.setFillColor(Color::Black);
         bar45.setFillColor(Color::Black);
-        bananaClock.restart();
+        peasClock.restart();
         win.draw(bar41);
         win.draw(bar42);
         win.draw(bar43);
@@ -198,8 +200,8 @@ void bananaGrowth(float& funds, string& fundsInString, Text& money, RenderWindow
         win.draw(bar45);
         win.draw(money);
         win.display();
-        isBanana = false;
-        bananaClock.restart();
+        ispeas = false;
+        peasClock.restart();
        
         }
         win.display();
@@ -207,32 +209,32 @@ void bananaGrowth(float& funds, string& fundsInString, Text& money, RenderWindow
    
 };
 
-void cherryGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar51, RectangleShape&bar52, RectangleShape&bar53, RectangleShape&bar54, RectangleShape&bar55, Clock&cherryClock, float&cherryModifier, bool&isCherry) {
+void watermelonGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, RectangleShape& bar51, RectangleShape&bar52, RectangleShape&bar53, RectangleShape&bar54, RectangleShape&bar55, Clock&watermelonClock, float&watermelonModifier, bool&iswatermelon) {
     float profit = 10;
     int x = 0;
 
 
-    float currentProgress =cherryClock.getElapsedTime().asMilliseconds();
-        if(currentProgress >=cherryModifier) {
+    float currentProgress =watermelonClock.getElapsedTime().asMilliseconds();
+        if(currentProgress >=watermelonModifier) {
             bar52.setFillColor(Color::Green);
             win.draw(bar52);
         }
-        if(currentProgress >=cherryModifier*2) {
+        if(currentProgress >=watermelonModifier*2) {
         bar53.setFillColor(Color::Green);
         win.draw(bar53);
         
         }
-        if(currentProgress >= cherryModifier*3) {
+        if(currentProgress >= watermelonModifier*3) {
         bar54.setFillColor(Color::Green);
         win.draw(bar54);
         
         }
-        if(currentProgress >=cherryModifier*4) {
+        if(currentProgress >=watermelonModifier*4) {
         bar55.setFillColor(Color::Green);
         win.draw(bar55);
         }
         
-        if(currentProgress >= cherryModifier*5) {
+        if(currentProgress >= watermelonModifier*5) {
         funds = funds+profit;
         fundsInString = to_string(funds);
         money.setString(fundsInString);
@@ -241,7 +243,7 @@ void cherryGrowth(float& funds, string& fundsInString, Text& money, RenderWindow
         bar53.setFillColor(Color::Black);
         bar54.setFillColor(Color::Black);
         bar55.setFillColor(Color::Black);
-        cherryClock.restart();
+        watermelonClock.restart();
         win.draw(bar51);
         win.draw(bar52);
         win.draw(bar53);
@@ -249,11 +251,13 @@ void cherryGrowth(float& funds, string& fundsInString, Text& money, RenderWindow
         win.draw(bar55);
         win.draw(money);
         win.display();
-        isCherry = false;
-        cherryClock.restart();
+        iswatermelon = false;
+        watermelonClock.restart();
        
         }
         win.display();
     
    
 };
+
+#endif
