@@ -8,23 +8,11 @@ using namespace sf;
 int main() {
 
     
-    bool ee = false;
     RenderWindow win(VideoMode(1280, 720), "Super Awesome Plant Game :3");
 // utilise the classes
     Player p;
     Shop s;
 
-    SoundBuffer buffer;
-
-
-Sound eesound(buffer);
-
-Texture rawr;
-
-
-Sprite rawrs;
-rawrs.setTexture(rawr);
-rawrs.setScale(1.9f, 1.9f);
 
     // open clock for progression
     Clock beetClock;
@@ -409,27 +397,7 @@ rawrs.setScale(1.9f, 1.9f);
                    
     };
         }
-        } if (Keyboard::isKeyPressed(Keyboard::Left) &&
-        Keyboard::isKeyPressed(Keyboard::Right) &&
-        Keyboard::isKeyPressed(Keyboard::Up)) {
-        win.clear();
-        eesound.play();
-        ee = true;
-         
-        Clock c; // Start the clock when ee becomes true
-
-        // Loop to wait for 3 seconds
-        while (ee) {
-            if (c.getElapsedTime().asSeconds() >= 3) {
-                ee = false; // Stop the flag after 3 seconds
-                eesound.stop(); // Stop the sound
-            } else {
-                win.clear();
-                win.draw(rawrs);
-                win.display();
-            }
-        }
-    }
+        } 
 
      
         
