@@ -1,5 +1,12 @@
 #include "Render.h"
 #include "Audio.h"
+#include "Animation.h"
+#include "Textures.h"
+#include "drawShop.h"
+#include "PlantGrowth.h"
+#include "Player.h"
+#include "Shop.h"
+#include "Requirements.h"
 #include <SFML/Audio.hpp>
 
 using namespace std;
@@ -13,6 +20,7 @@ int main() {
 // utilise the classes
     Player p;
     Shop s;
+    Animation anims;
 
     // load sound buffers
     Audio a;
@@ -210,7 +218,7 @@ int main() {
         return -1; 
     }
 
-    if (!asparagus.loadFromFile("asparaguscado.png")) {
+    if (!asparagus.loadFromFile("avocado.png")) {
         cerr << "Error loading asparaguscado texture" << endl;
         return -1; 
     };

@@ -6,10 +6,10 @@
 
 using namespace sf;
 
-void setupTextures(Texture& bd, Texture&minibd, Texture& avo, Texture& beet, Texture& apple, Texture& banana, Texture& cherry, Texture& shopButton, Texture& sign, Texture& sign2, Texture& sign3, Texture& sign4, Texture& sign5) {
+void setupTextures(Texture& bd, Texture&minibd, Texture& asparagus, Texture& beet, Texture& apple, Texture& banana, Texture& cherry, Texture& shopButton, Texture& sign, Texture& sign2, Texture& sign3, Texture& sign4, Texture& sign5) {
     bd.loadFromFile("bd1.jpg");
     minibd.loadFromFile("minibd.jpg");
-    avo.loadFromFile("avocado.png");
+    asparagus.loadFromFile("avocado.png");
     beet.loadFromFile("beetroot.png");
     apple.loadFromFile("apple.png");
     banana.loadFromFile("banana.png");
