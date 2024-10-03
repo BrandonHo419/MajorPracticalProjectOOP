@@ -7,10 +7,13 @@
 #include "Player.h"
 #include "Shop.h"
 #include "Requirements.h"
+#include "ScrollAnimation.h"
 #include <SFML/Audio.hpp>
 
 using namespace std;
 using namespace sf;
+
+auto tp = std::chrono::steady_clock::now();
 
 
 int main() {
@@ -25,6 +28,7 @@ int main() {
     // load sound buffers
     Audio a;
     
+    Scroll ss({640, 720});
 
     // open clock for progression
     Clock beetClock;
@@ -323,6 +327,8 @@ int main() {
         {
             if (event.type == sf::Event::Closed)
                 win.close();
+                 // get dt
+  
         if(event.type == Event::MouseButtonPressed) { // checks if it is a mouse press
             if(event.mouseButton.button == Mouse::Left) { // checks whether it was a left mouse button press
                 Vector2i mousepos = Mouse::getPosition(win); // retrieves the current mouse position (x and y)
@@ -419,6 +425,8 @@ int main() {
         }
         } 
 
+        
+
      
         
     }
@@ -454,6 +462,16 @@ int main() {
             drawShop(win);
             isPressed = false;
         }
+
+          float dt;
+    {
+      const auto newTp = std::chrono::steady_clock::now();
+      dt = std::chrono::duration<float>(newTp - tp).count();
+      tp = newTp;
+    }
+
+        ss.Update(dt, 0.1);
+
         // draw the windows
         win.clear();
         win.draw(backdrop);
@@ -465,6 +483,7 @@ int main() {
         win.draw(signs4);
         win.draw(signs5);
         //
+        ss.Draw(win);
         win.draw(bar);
         win.draw(bar1);
         win.draw(bar2);

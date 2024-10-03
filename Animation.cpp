@@ -3,7 +3,7 @@
 Animation::Animation(int x, int y, int width, int height, int numOfFrames, int animationID) {
     switch (animationID) {
         case 0:
-            texture.loadFromFile("animPack.png");
+            texture.loadFromFile("scrollsandblocks.png");
             break;
         case 1:
             texture.loadFromFile("coin_gold.png");
@@ -15,7 +15,7 @@ Animation::Animation(int x, int y, int width, int height, int numOfFrames, int a
             break;
     }
     frames.resize(numOfFrames);
-    if (animationID == 2) {
+    if (animationID == 2 || animationID == 0) {
         for (int i =0; i < numOfFrames; i++) {
             frames[i] = {x, y + i * (height*2), width, height};
         }
