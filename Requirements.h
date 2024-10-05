@@ -4,6 +4,7 @@
 #include <SFML/Window.hpp>
 #include <ctime>
 #include <chrono>
+#include <random>
 
 using namespace std;
 using namespace sf;

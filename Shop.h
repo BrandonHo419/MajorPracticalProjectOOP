@@ -12,8 +12,12 @@ class Shop : public Player {
         bool haveGreenhouse;
         float greenhouse;
         float greenhousePrice;
-        bool haveWorkers;
+        
         float workersPrice;
+
+    protected:
+
+    bool haveWorkers;
     public:
         Shop(){
             haveFertiliser = false;

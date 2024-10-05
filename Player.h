@@ -3,7 +3,10 @@
 
 class Player {
     private:
-        float money;
+        
+
+    protected:
+    float money;
     public:
         Player(){
             money = 1000.f;
