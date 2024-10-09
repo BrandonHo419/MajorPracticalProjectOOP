@@ -13,6 +13,7 @@
 #include "RandomEvents.h"
 #include "loadRect.h"
 #include "DialogBox.h"
+#include "mouseHandle.h"
 
 using namespace std;
 using namespace sf;
@@ -41,6 +42,7 @@ int main() {
     Shop s;
     Animation anims;
     RandomEvents events;
+    mouseHandle mh;
     Scroll sc(Vector2f(275.f, 152.f));
     sc.Update(1, 1);
     sc.Update(1, 1);
@@ -331,10 +333,7 @@ int main() {
         }
 
         
-        if(event.type == Event::MouseButtonPressed) { // checks if it is a mouse press
-            if(event.mouseButton.button == Mouse::Left) { // checks whether it was a left mouse button press
-                Vector2i mousepos = Mouse::getPosition(win); // retrieves the current mouse position (x and y)
-                if(signs.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) { // returns a rectangle of bounds and static_cast converts 2i to 2f
+        if(mh.handleMouse(event, signs, win)) { // returns a rectangle of bounds and static_cast converts 2i to 2f
                     if(funds >= 10) {
                         funds = funds-10;
                         lr.bar.setFillColor(Color::Green);
@@ -344,14 +343,9 @@ int main() {
                         isAvo = true;
                         avoClock.restart();    
                         avoGrowth(funds, fundsInString, money, win, lr.bar, lr.bar1, lr.bar2, lr.bar3, lr.bar4, avoClock, isAvo, avoModifier); // calls function
-                        
-                    }
-                } 
-            }
-        } if(event.type == Event::MouseButtonPressed) {
-            if(event.mouseButton.button == Mouse::Left) {
-                Vector2i mousepos = Mouse::getPosition(win);
-                if(signs2.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+                    }           
+            } 
+           if(mh.handleMouse(event, signs2, win)) {
                     if(funds >= 50) {
                         funds = funds-50;
                         lr.bar21.setFillColor(Color::Green);
@@ -361,16 +355,11 @@ int main() {
                         isBeet = true;
                         beetClock.restart();
                         beetGrowth(funds, fundsInString, money, win, lr.bar21, lr.bar22, lr.bar23, lr.bar24, lr.bar25, beetClock, beetModifier, isBeet);
-                        
-                    }; // make else condition pop up for poorness
+                    }
+                }; 
                  
                     
-    };
-            }
-        } if(event.type == Event::MouseButtonPressed) {
-            if(event.mouseButton.button == Mouse::Left) {
-                Vector2i mousepos = Mouse::getPosition(win);
-                if(signs3.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+            if(mh.handleMouse(event, signs3, win)) {
                     lr.bar31.setFillColor(Color::Green);
                     win.draw(lr.bar31);
                     win.display();
@@ -378,12 +367,8 @@ int main() {
                     appleClock.restart();
                     appleGrowth(funds, fundsInString, money, win, lr.bar31, lr.bar32, lr.bar33, lr.bar34, lr.bar35, appleClock, appleModifier, isApple);
     };
-        }
-        }
-        if(event.type == Event::MouseButtonPressed) {
-            if(event.mouseButton.button == Mouse::Left) {
-                Vector2i mousepos = Mouse::getPosition(win);
-                if(signs4.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+     
+            if(mh.handleMouse(event, signs4, win)) {
                     lr.bar41.setFillColor(Color::Green);
                     win.draw(lr.bar41);
                     win.display();
@@ -392,12 +377,7 @@ int main() {
                     bananaGrowth(funds, fundsInString, money, win, lr.bar41, lr.bar42, lr.bar43, lr.bar44, lr.bar45, bananaClock, bananaModifier, isBanana);
 
     };
-        }
-        }
-        if(event.type == Event::MouseButtonPressed) {
-            if(event.mouseButton.button == Mouse::Left) {
-                Vector2i mousepos = Mouse::getPosition(win);
-                if(signs5.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+            if(mh.handleMouse(event, signs5, win)) {
                     lr.bar51.setFillColor(Color::Green);
                     win.draw(lr.bar51);
                     win.display();
@@ -405,31 +385,21 @@ int main() {
                     cherryClock.restart();
                     cherryGrowth(funds, fundsInString, money, win, lr.bar51, lr.bar52, lr.bar53, lr.bar54, lr.bar55, cherryClock, cherryModifier, isCherry);
     };
-        }
-        } if(event.type = Event::MouseButtonPressed) {
-            if(event.mouseButton.button == Mouse::Left) {
-                Vector2i mousepos = Mouse::getPosition(win);
-                if(shop.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+         if(mh.handleMouse(event, shop, win)) {
                     drawShop(win);
                     win.display();
     };
-        }
-        }
+       
         if(events.eventOne == true) {
             while(events.eventOne == true) {
             win.draw(lr.DialogBox);
             win.draw(events.message1);
             win.display();
-            if(event.type = Event::MouseButtonPressed) {
-                if(event.mouseButton.button == Mouse::Left) {
-                    Vector2i mousepos = Mouse::getPosition(win);
-                    if(lr.DialogBox.getGlobalBounds().contains(static_cast<Vector2f>(mousepos))) {
+            if(mh.handleMouseR(event, lr.DialogBox, win)) {
                         events.eventOne = false;
                     }
                 }
                 }
-            }
-        }
         }
 // flags
         if(isBeet == true) {
@@ -526,11 +496,14 @@ int main() {
         sc.Draw(win);
 
         win.display();
-
-        
-    }
+    };
 
     return 0;
-};
+
+        
+    };
+
+   
+
 
 
