@@ -152,3 +152,5 @@ bool Shop::checkIsPressed() {
 bool Shop::checkEnoughMoney() {
     return enoughMoney;
 }
+
+Shop::~Shop(){};

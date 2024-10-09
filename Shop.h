@@ -17,10 +17,12 @@ class Shop : public Player {
         int greenhouseLevel;
         float greenhouse;
         float greenhousePrice;
+        float workersPrice;
+
+        protected: // Need in protected class because I inherit.
         bool haveWorkers;
         int workersLevel;
         int numOfWorkers;
-        float workersPrice;
     public:
         Shop();
         std::string printItems(bool enoughMoney, int fertLevel, int greenLevel, int workersLevel);
@@ -34,5 +36,6 @@ class Shop : public Player {
         bool checkIsPressed();
         void setEnoughMoney(bool set);
         bool checkEnoughMoney();
+        ~Shop();
 };
 #endif

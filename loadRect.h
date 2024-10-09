@@ -30,6 +30,8 @@ class loadRect {
     RectangleShape bar54;
     RectangleShape bar55;
 
+    RectangleShape DialogBox;
+
     private:
 
     
@@ -39,7 +41,7 @@ class loadRect {
     loadRect(){
         // Load Progress Bar Shapes
 
-     bar.setSize(Vector2f(40, 40));
+    bar.setSize(Vector2f(40, 40));
     bar.setFillColor(Color::Black);
     bar.setPosition(290, 104);
 
@@ -139,7 +141,9 @@ class loadRect {
     bar55.setFillColor(Color::Black);
     bar55.setPosition(454, 511);
 
-
+    DialogBox.setSize(Vector2f(400, 150));
+    DialogBox.setFillColor(Color::Blue);
+    DialogBox.setPosition(280,290);
 
     };
 

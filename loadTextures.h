@@ -6,9 +6,6 @@ class loadTextures {
     private:
 
     public:
-    void loadRectangles() {
-        
-    }
     
     public:
     struct allTextures {

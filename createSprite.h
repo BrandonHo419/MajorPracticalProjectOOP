@@ -1,70 +1,118 @@
 #include "Requirements.h"
-#include "loadTextures.h"
+#include "renderText.h"
 #ifndef CREATESPRITE_H
 #define CREATESPRITE_H
 
-class createSprite : public loadTextures {
+class createSprite: public renderText{
 public:
-    sf::Sprite backdrop;
-    sf::Sprite minibackdrop;
-    sf::Sprite blueberries;
-    sf::Sprite beetroot;
-    sf::Sprite tomatos;
-    sf::Sprite carrot;
-    sf::Sprite strawberry;
-    sf::Sprite shop;
-    sf::Sprite signs;
-    sf::Sprite signs2;
-    sf::Sprite signs3;
-    sf::Sprite signs4;
-    sf::Sprite signs5;
-    sf::Sprite blocks;
+    // end load from file
+
+    // Create sprites for the GFX
+    Sprite backdrop; 
+    Sprite minibackdrop;
+    Sprite avocado;
+    Sprite beetroot;
+    Sprite apples;
+    Sprite bananas;
+    Sprite cherries;
+    Sprite shop;
+    Sprite signs;
+    Sprite signs2;
+    Sprite signs3;
+    Sprite signs4;
+    Sprite signs5;
+    Sprite blocks;
 
     // Shop Sprites
-    sf::Sprite background;
-    sf::Sprite foreground;
-    sf::Sprite shopSign1;
-    sf::Sprite shopSign2;
-    sf::Sprite shopSign3;
-    sf::Sprite shopSign;
-    sf::Sprite fert;
-    sf::Sprite greenhouse;
-    sf::Sprite farmer;
+    Sprite background;
+    Sprite foreground;
+    Sprite shopSign1;
+    Sprite shopSign2;
+    Sprite shopSign3;
+    Sprite shopSign;
+    Sprite fert;
+    Sprite greenhouse;
+    Sprite farmer;
 
-    private:
+    // End sprites
 
-    protected:
+private:
+
+protected:
 
 public:
     createSprite() {
-        // Load textures
-        assignTextures();
+        
+    }
 
-        backdrop.setTexture(getTextures().bd);
-        minibackdrop.setTexture(getTextures().minibd);
-        blueberries.setTexture(getTextures().blueberry);
-        beetroot.setTexture(getTextures().beet);
-        tomatos.setTexture(getTextures().tomato);
-        carrot.setTexture(getTextures().carrots);
-        strawberry.setTexture(getTextures().strawberries);
-        shop.setTexture(getTextures().shopButton);
-        signs.setTexture(getTextures().sign);
-        signs2.setTexture(getTextures().sign2);
-        signs3.setTexture(getTextures().sign3);
-        signs4.setTexture(getTextures().sign4);
-        signs5.setTexture(getTextures().sign5);
-        blocks.setTexture(getTextures().block);
+    void createandset() {
+        // Create sprites for the GFX
+    Sprite backdrop(bd); // creates a sprite so it stays in systme memory
+    Sprite minibackdrop(minibd);
+    Sprite avocado(avo);
+    Sprite beetroot(beet);
+    Sprite apples(apple);
+    Sprite bananas(banana);
+    Sprite cherries(cherry);
+    Sprite shop(shopButton);
+    Sprite signs(sign);
+    Sprite signs2(sign2);
+    Sprite signs3(sign3);
+    Sprite signs4(sign4);
+    Sprite signs5(sign5);
+    Sprite blocks;
 
+// Shop Sprites
+    Sprite background(back);
+    Sprite foreground(fore);
+    Sprite shopSign1(board1);
+    Sprite shopSign2(board2);
+    Sprite shopSign3(board3);
+    Sprite shopSign(shopBoard);
+    Sprite fert(fertiliser);
+    Sprite greenhouse(house);
+    Sprite farmer(worker);
 
-        background.setTexture(getTextures().back);
-        foreground.setTexture(getTextures().fore);
-        shopSign1.setTexture(getTextures().board1);
-        shopSign2.setTexture(getTextures().board2);
-        shopSign3.setTexture(getTextures().board3);
-        shopSign.setTexture(getTextures().shopBoard);
-        fert.setTexture(getTextures().fertiliser);
-        greenhouse.setTexture(getTextures().house);
-        farmer.setTexture(getTextures().worker);
+    // further
+
+        // Set Scales
+    minibackdrop.setScale(2.0, 1.5);
+    avocado.setScale(0.14, 0.14);
+    beetroot.setScale(0.14, 0.14);
+    apples.setScale(0.14, 0.14);
+    bananas.setScale(0.14, 0.14);
+    cherries.setScale(0.2, 0.2);
+    shop.setScale(0.4, 0.4);
+    signs.setScale(0.4, 0.4);
+    signs2.setScale(0.4, 0.4);
+    signs3.setScale(0.4, 0.4);
+    signs4.setScale(0.4, 0.4);
+    signs5.setScale(0.4, 0.4);
+    blocks.setScale(1, 1);
+
+    
+    
+    // shop scales
+    foreground.setScale(2.0, 1.5);
+    fert.setScale(0.2f, 0.2f);
+    greenhouse.setScale(0.35f, 0.35f);
+    farmer.setScale(0.045, 0.045);
+    shopSign.setScale(0.4, 0.4);
+    shopSign1.setScale(0.4, 0.4);
+    shopSign2.setScale(0.4, 0.4);
+    shopSign3.setScale(0.4, 0.4);
+    //End scales
+
+    
+
+    // New position
+    avocado.setPosition(150, 100);
+    beetroot.setPosition(150, 200);
+    apples.setPosition(150, 300);
+    bananas.setPosition(150, 400);
+    cherries.setPosition(150, 500);
+    
+    // End positions
     }
 
     ~createSprite() {}
