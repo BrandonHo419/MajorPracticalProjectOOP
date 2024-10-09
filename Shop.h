@@ -1,90 +1,38 @@
 #include "Player.h"
 #include <string>
+#include <SFML/Graphics.hpp>
 #ifndef SHOP_H
 #define SHOP_H
 
 
 class Shop : public Player {
     private:
+        bool isPressed;
+        bool enoughMoney;
         bool haveFertiliser;
+        int fertiliserLevel;
         float fertiliser;
         float fertiliserPrice;
         bool haveGreenhouse;
+        int greenhouseLevel;
         float greenhouse;
         float greenhousePrice;
-        
+        bool haveWorkers;
+        int workersLevel;
+        int numOfWorkers;
         float workersPrice;
-
-    protected:
-
-    bool haveWorkers;
     public:
-        Shop(){
-            haveFertiliser = false;
-            fertiliser = 0.05;
-            fertiliserPrice = 500;
-            haveGreenhouse = false;
-            greenhouse = 0.05;
-            greenhousePrice = 500;
-            haveWorkers = false;
-            workersPrice = 500;
-        }
-        std::string printItems() {
-            std::string items = "";
-            items = items + "You have:\n"; 
-            if (haveFertiliser == true) {
-                items = items + "Fertiliser\n";
-            }
-
-            if (haveGreenhouse == true) {
-                items = items + "A greenhouse\n";
-            }
-
-            if (haveWorkers == true) {
-                items = items + "Workers\n";
-            }
-
-            if (haveFertiliser == false && haveGreenhouse == false && haveWorkers == false) {
-                items = items + "Nothing\n";
-            }
-
-            return items;
-        }
-        bool purchaseFertiliser() {
-            if (haveFertiliser == true) {
-                return true;
-            }
-            else if (getMoney() >= fertiliserPrice) {
-                setMoney(fertiliserPrice);
-                haveFertiliser = true;
-                return true;
-            } 
-            else {
-                return false;
-            }
-        };
-        bool purchaseGreenhouse() {
-            if (haveGreenhouse == true) {
-                return true;
-        } else if (getMoney() >= greenhousePrice){
-            setMoney(greenhousePrice);
-            haveGreenhouse = true;
-            return true;
-        }  
-        else {
-            return false;
-            }
-        }
-        bool purchaseWorkers() {
-            if (haveWorkers == true) {
-                return true;
-            } else if (getMoney() >= workersPrice) {
-                setMoney(workersPrice);
-                haveWorkers = true;
-                return true;
-            } else {
-                return false;
-            }
-        }
+        Shop();
+        std::string printItems(bool enoughMoney, int fertLevel, int greenLevel, int workersLevel);
+        bool purchaseFertiliser();
+        int getFertiliserLevel();
+        bool purchaseGreenhouse();
+        int getGreenhouseLevel();
+        bool purchaseWorkers();
+        int getWorkersLevel();
+        void setIsPressed(bool set);
+        bool checkIsPressed();
+        void setEnoughMoney(bool set);
+        bool checkEnoughMoney();
 };
 #endif
