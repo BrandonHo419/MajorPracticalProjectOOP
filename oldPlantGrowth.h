@@ -6,7 +6,13 @@ using namespace std;
 using namespace sf;
 
 class plantGrowth {
+    private:
 
+    protected:
+
+    public:
+
+    
 };
 
 void avoGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, Clock& avoClock, bool& isAvo, float& avoModifier) {

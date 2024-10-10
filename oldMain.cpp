@@ -7,7 +7,7 @@
 #include "Player.h"
 #include "Shop.h"
 #include "Requirements.h"
-#include "Animation.h"
+#include "Animation2.h"
 #include "ScrollAnimation.h"
 #include "RandomEvents.h"
 #include "loadRect.h"

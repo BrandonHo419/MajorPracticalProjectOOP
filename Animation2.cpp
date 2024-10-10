@@ -1,4 +1,4 @@
-#include "Animation.h"
+#include "Animation2.h"
 
 Animation::Animation(int x, int y, int width, int height, int numOfFrames, int animationID) {
     switch (animationID) {

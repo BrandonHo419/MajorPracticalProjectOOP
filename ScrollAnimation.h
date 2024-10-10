@@ -1,5 +1,5 @@
 #include "Requirements.h"
-#include "Animation.h"
+#include "Animation2.h"
 #ifndef SCROLLANIMATION_H
 #define SCROLLANIMATION_H
 
