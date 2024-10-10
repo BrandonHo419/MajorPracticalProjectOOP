@@ -1,8 +1,13 @@
 #include "Requirements.h"
-
+#ifndef OLDPLANTGROWTH_H
+#define OLDPLANTGROWTH_H
 
 using namespace std;
 using namespace sf;
+
+class plantGrowth {
+
+};
 
 void avoGrowth(float& funds, string& fundsInString, Text& money, RenderWindow& win, Clock& avoClock, bool& isAvo, float& avoModifier) {
     // lets say avo growth time is 25s
@@ -122,3 +127,6 @@ void cherryGrowth(float& funds, string& fundsInString, Text& money, RenderWindow
     
    
 };
+
+
+#endif

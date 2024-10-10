@@ -49,8 +49,6 @@ int main() {
 
 
 
-    events.genRand();
-    events.deadFarmer();
     
     
 
@@ -389,7 +387,8 @@ int main() {
                         events.eventOne = false;
                     }
                 }
-                }
+            }
+        }
 // flags
         if(isBeet == true) {
             if(beetClock.getElapsedTime().asMilliseconds()>= beetModifier) {
@@ -459,8 +458,11 @@ int main() {
         
         win.draw(blocks);
         sc.Draw(win);
+        events.genRand();
 
         win.display();
+        
+    
     };
 
     return 0;
@@ -468,7 +470,6 @@ int main() {
         
     };
 
-};
 
 
 
