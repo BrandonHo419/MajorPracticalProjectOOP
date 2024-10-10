@@ -1,8 +1,9 @@
-#ifndef ANIMATION_H
-#define ANIMATION_H
+#ifndef ANIMATION2_H
+#define ANIMATION2_H
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
+#include "Requirements.h"
 
 // class Animation {
 //  public:
@@ -20,11 +21,11 @@
    //  float time = 0.0f; // Keep track fo time elapsed until next frame 
 // };
 
-class Animation {
+class Animation2 {
  public:
-    Animation() = default;
-    Animation(int x, int y, int width, int height, int numOfFrames, int animationID)  {
-        switch (animationID) {
+    Animation2() = default;
+    Animation2(int x, int y, int width, int height, int numOfFrames, int animation2ID)  {
+        switch (animation2ID) {
             case 0:
                 texture.loadFromFile("scrollsandblocks.png");
                 break;
@@ -38,7 +39,7 @@ class Animation {
                 break;
         }
         frames.resize(numOfFrames);
-        if (animationID == 2 || animationID == 0) {
+        if (animation2ID == 2 || animation2ID == 0) {
             for (int i = 0; i < numOfFrames; i++) {
                 frames[i] = {x, y + i * (height * 2), width, height};
             }
@@ -55,16 +56,16 @@ class Animation {
         s.setScale(sf::Vector2f(1.2, 1.2));
     }
 
-    void Update(float dt, float waitTime) {
+    void Updates(float dt, float waitTime) {
         time += dt;
         while (time >= waitTime) {
             time -= waitTime;
-            NextAnimation();
+            NextAnimation2();
         }
     }
 
  private:
-    void NextAnimation() {
+    void NextAnimation2() {
         if (++currentFrame >= frames.size()) {
             currentFrame = 0;
         }

@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-Shop::Shop():Player() {
+Shop::Shop():Player(position) {
     // Initialise shop variables 
     haveFertiliser = false;
     fertiliserLevel = 0;

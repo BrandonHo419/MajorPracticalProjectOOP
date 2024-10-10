@@ -22,7 +22,7 @@ auto tp = std::chrono::steady_clock::now();
 int main() {
     
     RenderWindow win(VideoMode(1280, 720), "Super Awesome Plant Game :3");
-    Player p;
+    Player p(Vector2f(0, 0));
      Font font;
     font.loadFromFile("Albertson.ttf");
     float funds = p.getMoney();

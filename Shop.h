@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Requirements.h"
 #include <string>
 #include <SFML/Graphics.hpp>
 #ifndef SHOP_H

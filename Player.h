@@ -23,12 +23,17 @@ class Player {
 
  private:
   static constexpr float speed = 100.0f; // How fast the player can move
-  sf::Vector2f position;
+  
   sf::Vector2f velocity = {0.f, 0.f};
   sf::Sprite sprite;
   Animation animations[int(indexAnimation::Count)]; // Create an array of different animations
   indexAnimation currentAnimation = indexAnimation::Upwards;
-  float money;
+  
+
+  protected:
+    sf::Vector2f position;
+    float money;
+
 };
 
 #endif

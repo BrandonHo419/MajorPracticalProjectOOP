@@ -32,7 +32,7 @@ void Animation::ApplyAnimToSprite(sf::Sprite& s) const {
     s.setScale(sf::Vector2f(2, 2));
 }
 
-void Animation::Update(float dt, float waitTime) {
+void Animation::Updates(float dt, float waitTime) {
     time += dt;
     while (time >= waitTime) {
         time -= waitTime;
