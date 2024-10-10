@@ -1,7 +1,7 @@
 #include "Text.h"
 #include <sstream>
 
-Text::Text(const std::string& fontFile, const sf::Vector2f& position) {
+Text2::Text2(const std::string& fontFile, const sf::Vector2f& position) {
     if (!font.loadFromFile(fontFile)) {
         throw std::runtime_error("Failed to load font");
     }
@@ -10,7 +10,7 @@ Text::Text(const std::string& fontFile, const sf::Vector2f& position) {
     text.setPosition(position);
 }
 
-void Text::updateText(Player& player, const std::string& string, int typeOfUpdate) {
+void Text2::updateText(Player& player, const std::string& string, int typeOfUpdate) {
     std::stringstream ss;
     if (typeOfUpdate == 0) {
         ss << " " << player.getMoney() << "\n";
@@ -24,6 +24,6 @@ void Text::updateText(Player& player, const std::string& string, int typeOfUpdat
     text.setString(ss.str());
 }
 
-void Text::draw(sf::RenderWindow& window) {
+void Text2::draw(sf::RenderWindow& window) {
     window.draw(text);
 }

@@ -4,9 +4,9 @@
 #include <string>
 #include "Player.h"
 
-class Text {
+class Text2 {
 public:
-    Text(const std::string& fontFile, const sf::Vector2f& position); // Initialies the text 
+    Text2(const std::string& fontFile, const sf::Vector2f& position); // Initialies the text 
     void updateText(Player& player, const std::string& string, int typeOfUpdate); // Updates the text
     void draw(sf::RenderWindow& window); // Draws the text
 

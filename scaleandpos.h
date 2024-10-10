@@ -45,11 +45,12 @@ class scaleandpos : public createSprite{
 
     
     // New position
-    avocado.setPosition(150, 100);
-    beetroot.setPosition(150, 200);
-    apples.setPosition(150, 300);
-    bananas.setPosition(150, 400);
-    cherries.setPosition(150, 500);
+   avocado.setPosition(225, 150);
+    beetroot.setPosition(225, 300);
+    apples.setPosition(225, 450);
+    bananas.setPosition(225, 600);
+    cherries.setPosition(225, 750);
+
     
     // End positions
     }

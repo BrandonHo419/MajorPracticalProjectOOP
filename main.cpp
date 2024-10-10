@@ -52,10 +52,10 @@ int main() {
 
   // Create grid map, text, buttons and scoll
   GridMap grid(gridSizeF, gridSizeU, mapSizeX, mapSizeY, gridOffsetX, gridOffsetY);
-  Text balance("windows_command_prompt.ttf", sf::Vector2f(360.f, 0.f));
-  Text crop("windows_command_prompt.ttf", sf::Vector2f(1250.f, 22.f));
-  Text shop("windows_command_prompt.ttf", sf::Vector2f(1450.f, 22.f));
-  Text more("windows_command_prompt.ttf", sf::Vector2f(1650.f, 22.f));
+  Text2 balance("windows_command_prompt.ttf", sf::Vector2f(360.f, 0.f));
+  Text2 crop("windows_command_prompt.ttf", sf::Vector2f(1250.f, 22.f));
+  Text2 shop("windows_command_prompt.ttf", sf::Vector2f(1450.f, 22.f));
+  Text2 more("windows_command_prompt.ttf", sf::Vector2f(1650.f, 22.f));
   UI balanceBackground("scrollsandblocks.png", sf::Vector2f(240.f, 20.f), 0, sf::IntRect(32, 0, 64, 32));
   UI fence("fence.png", sf::Vector2f(96.f, 160.f), 1, sf::IntRect(32, 0, 32, 32));
   UI tomatoesButton("crops2.png", sf::Vector2f(1300.f, 288.f), 2, sf::IntRect(32*28, 32*10, 32, 32));
