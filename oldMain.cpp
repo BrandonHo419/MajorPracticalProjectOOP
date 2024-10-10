@@ -3,7 +3,6 @@
 #include <ctime>
 #include "Textures.h"
 #include "drawShop.h"
-#include "PlantGrowth.h"
 #include "oldPlantGrowth.h"
 #include "Player.h"
 #include "Shop.h"
@@ -51,6 +50,7 @@ int main() {
 
 
     events.genRand();
+    events.deadFarmer();
     
     
 
@@ -336,54 +336,44 @@ int main() {
         if(mh.handleMouse(event, signs, win)) { // returns a rectangle of bounds and static_cast converts 2i to 2f
                     if(funds >= 10) {
                         funds = funds-10;
-                        lr.bar.setFillColor(Color::Green);
-                        win.draw(lr.bar);
                         win.draw(money);
                         win.display();
                         isAvo = true;
                         avoClock.restart();    
-                        avoGrowth(funds, fundsInString, money, win, lr.bar, lr.bar1, lr.bar2, lr.bar3, lr.bar4, avoClock, isAvo, avoModifier); // calls function
+                        avoGrowth(funds, fundsInString, money, win, avoClock, isAvo, avoModifier); // calls function
                     }           
             } 
            if(mh.handleMouse(event, signs2, win)) {
                     if(funds >= 50) {
                         funds = funds-50;
-                        lr.bar21.setFillColor(Color::Green);
-                        win.draw(lr.bar21);
                         win.draw(money);
                         win.display();
                         isBeet = true;
                         beetClock.restart();
-                        beetGrowth(funds, fundsInString, money, win, lr.bar21, lr.bar22, lr.bar23, lr.bar24, lr.bar25, beetClock, beetModifier, isBeet);
+                        beetGrowth(funds, fundsInString, money, win, beetClock, beetModifier, isBeet);
                     }
                 }; 
                  
                     
             if(mh.handleMouse(event, signs3, win)) {
-                    lr.bar31.setFillColor(Color::Green);
-                    win.draw(lr.bar31);
                     win.display();
                     isApple = true;
                     appleClock.restart();
-                    appleGrowth(funds, fundsInString, money, win, lr.bar31, lr.bar32, lr.bar33, lr.bar34, lr.bar35, appleClock, appleModifier, isApple);
+                    appleGrowth(funds, fundsInString, money, win, appleClock, appleModifier, isApple);
     };
      
             if(mh.handleMouse(event, signs4, win)) {
-                    lr.bar41.setFillColor(Color::Green);
-                    win.draw(lr.bar41);
                     win.display();
                     isBanana = true;
                     bananaClock.restart();
-                    bananaGrowth(funds, fundsInString, money, win, lr.bar41, lr.bar42, lr.bar43, lr.bar44, lr.bar45, bananaClock, bananaModifier, isBanana);
+                    bananaGrowth(funds, fundsInString, money, win, bananaClock, bananaModifier, isBanana);
 
     };
             if(mh.handleMouse(event, signs5, win)) {
-                    lr.bar51.setFillColor(Color::Green);
-                    win.draw(lr.bar51);
                     win.display();
                     isCherry = true;
                     cherryClock.restart();
-                    cherryGrowth(funds, fundsInString, money, win, lr.bar51, lr.bar52, lr.bar53, lr.bar54, lr.bar55, cherryClock, cherryModifier, isCherry);
+                    cherryGrowth(funds, fundsInString, money, win, cherryClock, cherryModifier, isCherry);
     };
          if(mh.handleMouse(event, shop, win)) {
                     drawShop(win);
@@ -400,34 +390,33 @@ int main() {
                     }
                 }
                 }
-        }
 // flags
         if(isBeet == true) {
             if(beetClock.getElapsedTime().asMilliseconds()>= beetModifier) {
-                beetGrowth(funds, fundsInString, money, win, lr.bar21,lr.bar22, lr.bar23, lr.bar24, lr.bar25, beetClock, beetModifier, isBeet);
+                beetGrowth(funds, fundsInString, money, win, beetClock, beetModifier, isBeet);
             }
         };
 
         if(isAvo == true) {
             if(avoClock.getElapsedTime().asMilliseconds() >= avoModifier) {
-                avoGrowth(funds, fundsInString, money, win, lr.bar, lr.bar1, lr.bar2, lr.bar3, lr.bar4, avoClock, isAvo, avoModifier);
+                avoGrowth(funds, fundsInString, money, win,  avoClock, isAvo, avoModifier);
             }
         }
         if(isApple == true) {
             if(appleClock.getElapsedTime().asMilliseconds() >= appleModifier) {
-                appleGrowth(funds, fundsInString, money, win, lr.bar31, lr.bar32, lr.bar33, lr.bar34, lr.bar35, appleClock, appleModifier, isApple);
+                appleGrowth(funds, fundsInString, money, win,  appleClock, appleModifier, isApple);
             }
         }
 
         if(isBanana == true) {
             if(bananaClock.getElapsedTime().asMilliseconds() >= bananaModifier) {
-                bananaGrowth(funds, fundsInString, money, win, lr.bar41, lr.bar42, lr.bar43, lr.bar44, lr.bar45, bananaClock, bananaModifier, isBanana);
+                bananaGrowth(funds, fundsInString, money, win,  bananaClock, bananaModifier, isBanana);
             }
         }
 
         if(isCherry == true) {
             if(cherryClock.getElapsedTime().asMilliseconds() >= cherryModifier) {
-                appleGrowth(funds, fundsInString, money, win, lr.bar51, lr.bar52, lr.bar53, lr.bar54, lr.bar55, cherryClock, cherryModifier, isCherry);
+                appleGrowth(funds, fundsInString, money, win, cherryClock, cherryModifier, isCherry);
             }
         }
 
@@ -456,31 +445,7 @@ int main() {
         win.draw(signs4);
         win.draw(signs5);
         //
-        win.draw(lr.bar);
-        win.draw(lr.bar1);
-        win.draw(lr.bar2);
-        win.draw(lr.bar3);
-        win.draw(lr.bar4);
-        win.draw(lr.bar21);
-        win.draw(lr.bar22);
-        win.draw(lr.bar23);
-        win.draw(lr.bar24);
-        win.draw(lr.bar25);
-        win.draw(lr.bar31);
-        win.draw(lr.bar32);
-        win.draw(lr.bar33);
-        win.draw(lr.bar34);
-        win.draw(lr.bar35);
-        win.draw(lr.bar41);
-        win.draw(lr.bar42);
-        win.draw(lr.bar43);
-        win.draw(lr.bar44);
-        win.draw(lr.bar45);
-        win.draw(lr.bar51);
-        win.draw(lr.bar52);
-        win.draw(lr.bar53);
-        win.draw(lr.bar54);
-        win.draw(lr.bar55);
+        
         //
         win.draw(avocado);
         win.draw(beetroot);
@@ -503,7 +468,7 @@ int main() {
         
     };
 
-   
+};
 
 
 
