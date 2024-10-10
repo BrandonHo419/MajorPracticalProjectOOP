@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef PLAYERJ_H
+#define PLAYERJ_H
 
 class Player {
     private:

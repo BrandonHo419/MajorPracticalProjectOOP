@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "PlayerJ.h"
 
 Player::Player() {
     money = 1000;
