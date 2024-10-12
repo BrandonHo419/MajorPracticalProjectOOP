@@ -7,6 +7,7 @@ class Text {
 public:
     Text(const std::string& fontFile, const sf::Vector2f& position, int fontSize); // Initialies the text 
     void updateText(const std::string& string); // Updates the text
+    void updateTextInstructions(const std::string& string); // Updates the text (game isntructions)
     void draw(sf::RenderWindow& window); // Draws the text
 
 private:

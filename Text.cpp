@@ -18,6 +18,13 @@ void Text::updateText(const std::string& string) {
     text.setString(ss.str());
 }
 
+void Text::updateTextInstructions(const std::string& string) {
+    std::string currentText = text.getString(); // Get the current text
+    currentText += string + "\n"; // Append the new text with a newline
+    text.setFillColor(sf::Color::White);
+    text.setString(currentText); // Set the updated text
+}
+
 void Text::draw(sf::RenderWindow& window) {
     window.draw(text);
 }
