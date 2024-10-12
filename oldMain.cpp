@@ -39,6 +39,9 @@ int main() {
   cout << funds << endl;
   string fundsInString = to_string(funds);
 
+  Clock gameClock;
+  const float eventCheckInterval = 6.0f;
+
   // load anim stf
   float charWaitTime = 0.1f;  // animation per frame time also growth for plants
 
@@ -470,6 +473,10 @@ int main() {
           }
         }
       }
+
+      if (gameClock.getElapsedTime().asSeconds() >= eventCheckInterval) {
+        events.checkRand();
+      };
       // Do Juans Main implementation (attempt anyway)
       // Update mouse position
       mousePosWindow = sf::Mouse::getPosition(win);
@@ -797,32 +804,6 @@ int main() {
     crop.draw(win);
     moreBackground.draw(win, 2);
     more.draw(win);
-
-    // end juan RAWR
-    win.draw(backdrop);
-    win.draw(minibackdrop);
-    //
-    win.draw(signs);
-    win.draw(signs2);
-    win.draw(signs3);
-    win.draw(signs4);
-    win.draw(signs5);
-    //
-
-    //
-    win.draw(avocado);
-    win.draw(beetroot);
-    win.draw(apples);
-    win.draw(bananas);
-    win.draw(cherries);
-    //
-    win.draw(shops);
-    win.draw(money);
-    //
-
-    win.draw(blocks);
-    events.genRand();
-
     win.display();
   };
 
