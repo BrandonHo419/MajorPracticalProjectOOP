@@ -1,6 +1,6 @@
 #include "Blueberries.h"
 
-Blueberries::Blueberries(const sf::Vector2f& position): position(position), waitTime(3.5f), sellValue(50.f) {
+Blueberries::Blueberries(const sf::Vector2f& position, float waitTime, float SellValue): position(position), waitTime(waitTime), sellValue(sellValue) {
     // Blueberries animation
     animations[int(indexAnimation::blueberriesAnimation)] = Animation(32*23, 32*11, 32, 32, 4, 2); 
 };
@@ -23,6 +23,18 @@ float Blueberries::getGrowthTime() {
     return waitTime;
 }
 
-void Blueberries::setGrowthTime(float modifier) {
-    this->waitTime = waitTime * modifier;
+void Blueberries::setGrowthTime(float waitTime) {
+    this->waitTime = waitTime;
+}
+
+void Blueberries::setSellValue(float sellValue) {
+    this->sellValue = sellValue;
+}
+
+float Blueberries::getSellValue() {
+    return sellValue;
+}
+
+std::string Blueberries::getCropType() {
+    return "Blueberries";
 }

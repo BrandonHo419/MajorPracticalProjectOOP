@@ -1,6 +1,6 @@
 #include "Carrots.h"
 
-Carrots::Carrots(const sf::Vector2f& position): position(position), waitTime(4.5f), sellValue(100.f) {
+Carrots::Carrots(const sf::Vector2f& position, float waitTime, float SellValue): position(position), waitTime(waitTime), sellValue(sellValue) {
     // Carrots animation 
     animations[int(indexAnimation::carrotsAnimation)] = Animation(32*6, 32, 32, 32, 4, 2); 
 };
@@ -23,6 +23,18 @@ float Carrots::getGrowthTime() {
     return waitTime;
 }
 
-void Carrots::setGrowthTime(float modifier) {
-    this->waitTime = waitTime * modifier;
+void Carrots::setGrowthTime(float waitTime) {
+    this->waitTime = waitTime;
+}
+
+void Carrots::setSellValue(float sellValue) {
+    this->sellValue = sellValue;
+}
+
+float Carrots::getSellValue() {
+    return sellValue;
+}
+
+std::string Carrots::getCropType() {
+    return "Carrots";
 }

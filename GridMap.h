@@ -18,6 +18,7 @@ class GridMap {
   bool getIsLocked(const sf::Vector2u& mousePosGrid); // Gets if the tile is locked
   bool getHasCrop(const sf::Vector2u& mousePosGrid); // Gets if the tile has a crop
   bool checkGrid(); // Checks the grid for unlocked tiles with no crops
+  void updateVariables(float growthTime, float sellValue, std::string cropName);
 
   struct Tile { // Struct for each tile 
     sf::RectangleShape shape;

@@ -236,3 +236,14 @@ bool GridMap::checkGrid() {
   }
   return false;
 }
+
+void GridMap::updateVariables(float growthTime, float sellValue, std::string cropName) {
+  for (int x = 0; x < mapSizeX; x++) {
+    for (int y = 0; y < mapSizeY; y++) {
+      if (tileMap[x][y].hasCrop == true && tileMap[x][y].plantedCrop->getCropType() == cropName) {
+        tileMap[x][y].plantedCrop->setGrowthTime(growthTime);
+        tileMap[x][y].plantedCrop->setSellValue(sellValue);
+      } 
+    }
+  }
+}

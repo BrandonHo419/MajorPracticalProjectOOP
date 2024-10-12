@@ -55,6 +55,9 @@ UI::UI(const std::string& fontFile, const sf::Vector2f& position, int imageID, c
     case 3: // Scroll
       sprite.setPosition(position);
       sprite.setScale(7, 9);
+    case 4: // Greenhouse
+      sprite.setPosition(position);
+      sprite.setScale(0.4, 0.4);
     default:
       break;
   }

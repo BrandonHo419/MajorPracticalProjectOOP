@@ -1,6 +1,6 @@
 #include "Tomatoes.h"
 
-Tomatoes::Tomatoes(const sf::Vector2f& position): position(position), waitTime(6.5f), sellValue(250.f) {
+Tomatoes::Tomatoes(const sf::Vector2f& position, float waitTime, float SellValue): position(position), waitTime(waitTime), sellValue(sellValue) {
     // Tomatoes animation
     animations[int(indexAnimation::tomatoesAnimation)] = Animation(32*28, 32*11, 32, 32, 4, 2);
 };
@@ -23,6 +23,18 @@ float Tomatoes::getGrowthTime() {
     return waitTime;
 }
 
-void Tomatoes::setGrowthTime(float modifier) {
-    this->waitTime = waitTime * modifier;
+void Tomatoes::setGrowthTime(float waitTime) {
+    this->waitTime = waitTime;
+}
+
+void Tomatoes::setSellValue(float sellValue) {
+    this->sellValue = sellValue;
+}
+
+float Tomatoes::getSellValue() {
+    return sellValue;
+}
+
+std::string Tomatoes::getCropType() {
+    return "Tomatoes";
 }

@@ -12,11 +12,14 @@ class Tomatoes: public Crop {
   enum class indexAnimation {tomatoesAnimation, Count};
 
  public:
-  Tomatoes(const sf::Vector2f& position);
+  Tomatoes(const sf::Vector2f& position, float waitTime, float sellValue);
   virtual void Draw(sf::RenderTarget& rt) override;
   virtual void Update(float dt, float waitTime, bool resetFrame, Player& player) override;
   float virtual getGrowthTime() override;
   void virtual setGrowthTime(float modifier) override;
+  virtual float getSellValue() override;
+  virtual void setSellValue(float modifier) override;
+  virtual std::string getCropType() override;
 
  private:
   sf::Vector2f position;

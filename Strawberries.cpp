@@ -1,6 +1,6 @@
 #include "Strawberries.h"
 
-Strawberries::Strawberries(const sf::Vector2f& position): position(position), waitTime(2.f), sellValue(20.f) {
+Strawberries::Strawberries(const sf::Vector2f& position, float waitTime, float SellValue): position(position), waitTime(waitTime), sellValue(sellValue) {
     // Strawberries Animation
     animations[int(indexAnimation::strawberriesAnimation)] = Animation(32*20, 32*11, 32, 32, 4, 2);
 };
@@ -23,6 +23,18 @@ float Strawberries::getGrowthTime() {
     return waitTime;
 }
 
-void Strawberries::setGrowthTime(float modifier) {
-    this->waitTime = waitTime - modifier;
+void Strawberries::setGrowthTime(float waitTime) {
+    this->waitTime = waitTime;
+}
+
+float Strawberries::getSellValue() {
+    return sellValue;
+}
+
+void Strawberries::setSellValue(float sellValue) {
+    this->sellValue = sellValue;
+}
+
+std::string Strawberries::getCropType() {
+    return "Strawberries";
 }

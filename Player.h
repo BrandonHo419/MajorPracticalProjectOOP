@@ -20,6 +20,7 @@ class Player {
   void setMoney(float cost); // Sets the players money
   void addMoney(float revenue); // Add to the player's money
   float getMoney(); // Gets the player's money
+  std::string getMoneyStr(); // Gets the player's money as a string
 
  private:
   static constexpr float speed = 100.0f; // How fast the player can move

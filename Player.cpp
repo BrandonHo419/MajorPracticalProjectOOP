@@ -1,6 +1,8 @@
 #include "Player.h"
+#include <iomanip>
+#include <sstream>
 
-Player::Player(const sf::Vector2f& position): position(position), money(1000.f) {
+Player::Player(const sf::Vector2f& position): position(position), money(16000.f) {
     // Walking animations
     animations[int(indexAnimation::Upwards)] = Animation(64, 64*8, 64, 64, 8, 0);
     animations[int(indexAnimation::Left)] = Animation(64, 64*9, 64, 64, 8, 0);
@@ -82,4 +84,11 @@ void Player::addMoney(float revenue) {
 
 float Player::getMoney() {
     return money;
+}
+
+std::string Player::getMoneyStr() {
+    std::ostringstream playerStream;
+    playerStream << std::fixed << std::setprecision(2) << money; // Format to two decimal places
+    std::string moneyString = playerStream.str(); // Get the formatted string
+    return moneyString;
 }

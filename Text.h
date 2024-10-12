@@ -2,12 +2,11 @@
 #define TEXT_H
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "Player.h"
 
 class Text {
 public:
-    Text(const std::string& fontFile, const sf::Vector2f& position); // Initialies the text 
-    void updateText(Player& player, const std::string& string, int typeOfUpdate); // Updates the text
+    Text(const std::string& fontFile, const sf::Vector2f& position, int fontSize); // Initialies the text 
+    void updateText(const std::string& string); // Updates the text
     void draw(sf::RenderWindow& window); // Draws the text
 
 private:
