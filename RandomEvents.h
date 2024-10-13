@@ -21,13 +21,39 @@ class RandomEvents : public Shop, public Crop {
   float virtual getGrowthTime() override { return 0; }
   void virtual setGrowthTime(float modifier) override {}
 
- protected:
- public:
-  bool eventOne = false;
+  bool forceWorkerStatus(
+      bool haveWorker) {  // passes bool parameter to return the amt of workers
+    this->haveWorkers = haveWorker;
+    return haveWorker;
+  }
+
+   bool eventOne = false;
   bool eventTwo = false;
   bool eventThree = false;
   bool eventFour = false;
-  bool eventFive = false;
+
+ protected:
+ public:
+
+ bool getEvent1() {
+    return eventOne;
+}
+
+bool getEvent2() {
+    return eventTwo;
+}
+
+bool getEvent3() {
+    return eventThree;
+}
+
+bool getEvent4() {
+    return eventFour;
+}
+
+
+
+ 
 
   Text message1;
 
@@ -67,7 +93,7 @@ class RandomEvents : public Shop, public Crop {
         "of "
         "your farmers and stole some money");
 
-    haveWorkers = false;
+    forceWorkerStatus(false);
     numOfWorkers = 0;
     workersLevel = 0;
     money = money - 520;
@@ -84,6 +110,32 @@ class RandomEvents : public Shop, public Crop {
     c.restart();
     globalModifier = 2;
 
+    if (c.getElapsedTime().asSeconds() >= 300) {
+      globalModifier = 1;
+    } else {
+      c.getElapsedTime().asSeconds();
+    }
+  }
+
+  int freeWorker() {
+    eventThree = true;
+    getFont();
+    message1.setString(
+        "A lonely farmer had his crops destroyed. He wants to join your farm "
+        "for free");
+
+    forceWorkerStatus(true);
+    numOfWorkers = numOfWorkers + 1;
+    return numOfWorkers;
+  }
+
+  float economicDepression() {
+    eventFour = true;
+    getFont();
+    message1.setString(
+        "Unfortunately due to the government printing too much money. The "
+        "country is in depression and your crops sell for 0.5x price");
+    globalModifier = 0.5;
     if (c.getElapsedTime().asSeconds() >= 300) {
       globalModifier = 1;
     } else {

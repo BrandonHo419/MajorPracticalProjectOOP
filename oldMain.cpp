@@ -780,6 +780,8 @@ int main() {
 
     // implement juans
 
+    // Render
+    win.clear();
     win.draw(backdrop);
     balanceBackground.draw(win, 0);
     fence.draw(win, 1);

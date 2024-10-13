@@ -10,7 +10,7 @@ CXXFLAGS = -IC:/Users/brand/OneDrive/Documents/sfml/sfml/include -Wall -g
 LDFLAGS = -LC:/Users/brand/OneDrive/Documents/sfml/sfml/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 # Target Executable
-Target = game
+TARGET = game
 
 # Source Files
 SRCS = oldMain.cpp Shop.cpp Player.cpp Animation.cpp Blueberries.cpp Beets.cpp Coin.cpp Gridmap.cpp Carrots.cpp Tomatoes.cpp Text.cpp Strawberries.cpp UI.cpp
