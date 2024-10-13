@@ -55,9 +55,11 @@ UI::UI(const std::string& fontFile, const sf::Vector2f& position, int imageID, c
     case 3: // Scroll
       sprite.setPosition(position);
       sprite.setScale(7, 9);
+      break;
     case 4: // Greenhouse
       sprite.setPosition(position);
       sprite.setScale(0.4, 0.4);
+      break;
     default:
       break;
   }
@@ -74,16 +76,16 @@ void UI::draw(sf::RenderWindow& window, int imageID)
   }
 }
 
-void UI::buttonPressed(int buttonType) {
-  if (buttonType == 0) {
+void UI::buttonPressed(const std::string& buttonType) {
+  if (buttonType == "Small") {
     sprite.setTextureRect(sf::IntRect(0,32,32,32));
   } else {
     sprite.setTextureRect(sf::IntRect(32,32,64,32));
   }
 }
 
-void UI::buttonNotPressed(int buttonType) {
-  if (buttonType == 0) {
+void UI::buttonNotPressed(const std::string& buttonType) {
+  if (buttonType == "Small") {
     sprite.setTextureRect(sf::IntRect(0,0,32,32));
   } else {
     sprite.setTextureRect(sf::IntRect(32,0,64,32));

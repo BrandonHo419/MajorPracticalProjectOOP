@@ -8,8 +8,8 @@ class UI {
 public:
     UI(const std::string& fontFile, const sf::Vector2f& position, int imageID, const sf::IntRect& spritepos); // Sets the texture for static sprites
     void draw(sf::RenderWindow& window, int imageID);  // Draws the sprite
-    void buttonPressed(int buttonType); // Changes the texture if the button is pressed
-    void buttonNotPressed(int buttonType); // Changes the texture if the button is not pressed
+    void buttonPressed(const std::string& buttonType); // Changes the texture if the button is pressed
+    void buttonNotPressed(const std::string& buttonType); // Changes the texture if the button is not pressed
     bool getWithinDimensions(const UI& button, sf::Vector2f worldPosition); // Checks if the mouse is within the bounds of the sprite
     void scrollSmall(); // Changes the scroll to a small version
     void scrollBig(); // Changes the scroll to a big version

@@ -3,11 +3,8 @@
 Animation::Animation(int x, int y, int width, int height, int numOfFrames,
                      int animationID) {
   switch (animationID) { // animationdID for selecting the correct sprite sheets
-    case 0:
-      texture.loadFromFile("Character Sprites.png");
-      break;
     case 1:
-      texture.loadFromFile("coin_gold.png");
+      texture.loadFromFile("Character Sprites.png");
       break;
     case 2:
       texture.loadFromFile("crops.png");
@@ -22,7 +19,7 @@ Animation::Animation(int x, int y, int width, int height, int numOfFrames,
     }
   } else {
     for (int i = 0; i < numOfFrames; i++) {
-      frames[i] = {x + i * width, y, width, height}; // Character and/or coin sprite sheet
+      frames[i] = {x + i * width, y, width, height}; // Character sprite sheet
     }
   }
 }

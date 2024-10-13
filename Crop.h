@@ -7,13 +7,13 @@ class Crop {
     public:
     Crop() = default;
     virtual ~Crop() = default;  // Virtual destructor for proper cleanup
-    virtual float getGrowthTime() = 0;
-    virtual void setGrowthTime(float modifier) = 0;
-    virtual void Draw(sf::RenderTarget& rt) = 0;  // Pure virtual function to be overridden by specific crops
-    virtual void Update(float dt, float waitTime, bool resetFrame, Player& player) = 0;
-    virtual float getSellValue() = 0;
-    virtual void setSellValue(float modifier) = 0;
-    virtual std::string getCropType() = 0;
+    virtual float getGrowthTime() = 0; // Return growth time for each crop
+    virtual void setGrowthTime(float modifier) = 0; // Change the growth of each time
+    virtual void Draw(sf::RenderTarget& rt) = 0;  // Draw each crop
+    virtual void Update(float dt, float waitTime, bool resetFrame, Player& player) = 0; // Update animation and add money to player 
+    virtual float getSellValue() = 0; // Return sellValue
+    virtual void setSellValue(float modifier) = 0; // Change the sell Value
+    virtual std::string getCropType() = 0; // Return what crop it is
 };
 
 #endif

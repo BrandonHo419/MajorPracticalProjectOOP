@@ -10,31 +10,25 @@ class Shop {
         Shop();
         void purchaseFertiliser(Player& player); // Purchase Fertiliser
         void purchaseGreenhouse(Player& player); // Purchase Greenhouse
-        void purchaseWorkers(Player& player); // Purchase Workers
-        std::string getFertiliserModifierStr(); // Retrieve fertiliser modifier as a string
-        std::string getGreenhouseModifierStr(); // Retrieve greenhouse modifier as a string
-        std::string getFertiliserPriceStr(); // Retrieve fertiliser price as a string
-        std::string getGreenhousePriceStr(); // Retrieve greenhouse price as a string
-        float getFertiliserPrice(); // Retrieve fertiliser price
-        float getGreenhousePrice(); // Retrieve greenhouse price
-        int getCropPrice(const std::string& cropName); // Retrieve crop price
-        std::string getCropPriceStr(const std::string& cropName); // Retrieve crop price as a string
-        int getCropGrowthTime(const std::string& cropName); // Retrieve crop growth time
-        std::string getCropGrowthTimeStr(const std::string& cropName); // Retrieve crop growth time as a string
-        int getCropSellValue(const std::string& cropName); // Retrieve crop sell value
-        std::string getCropSellValueStr(const std::string& cropName); // Retrieve sell value as a string
+        std::string getItemVarStr(const std::string& itemName, const std::string& variable); // Retrieve item price as a string
+        float getItemPrice(const std::string& itemName); // Retrieve item price
+        int getCropVar(const std::string& cropName, const std::string& variable); // Retrieve crop variable
+        std::string getCropVarStr(const std::string& cropName, const std::string& variable); // Retrieve crop var as a string
         void afterPurchaseCrop(const std::string& cropName); // After purchasing a crop, increase price to values
+        void weatherAffected(float temperature, float rainfall); // Apply the weather variables 
+        float getWeatherModfiers(const std::string& cropName); // Retrieve rainfall modifier
+        std::string getWeatherModfiersStr(const std::string& cropName); // Retrieve crop var as a string
     private:
-        float fertiliser;
-        float fertiliserPrice;
-        float greenhouse;
-        float greenhousePrice;
-        const float workersPrice;
-        float sellPercentage = 0.5f;
+        float sellPercentage = 0.4f;
         const float increasePricePercentage = 1.20f;
-        // Crop Prices
+        float temporaryTemperatureModifier = 1.0f;
+        float temporaryRainfallModifier = 1.0f;
+        // Crop and Item Variables using maps
         std::map<std::string, float> cropPrices;
         std::map<std::string, float> cropGrowthTime;
         std::map<std::string, float> cropSellValue;
+        std::map<std::string, float> itemPrices;
+        std::map<std::string, float> itemModifier;
+        std::map<std::string, float> weatherModifier;
 };
 #endif

@@ -9,7 +9,7 @@ class GridMap {
  public:
   GridMap(float gridSizeF, unsigned gridSizeU, int mapSizeX, int mapSizeY,
           float gridOffsetX, float gridOffsetY); // Initialises variables
-  void updateTileSelector(const sf::Vector2u& mousePosGrid, bool cropSelected); // Update tile selector according to the position of the mouse
+  void updateTileSelector(const sf::Vector2u& mousePosGrid, bool cropSelected, bool cropDelete); // Update tile selector according to the position of the mouse
   void draw(sf::RenderWindow& window, float dt, bool& resetFrame, sf::Vector2u& charPosGrid, Player& player); // Draws the grid
   void updateMouseGridPosition(const sf::Vector2f& worldPosition, sf::Vector2u& mousePosGrid); // Updates the grid position from the mouse
   void updateCharGridPosition(const sf::Vector2f& charPos, sf::Vector2u& charPosGrid); // Ensures a boundary for the player
@@ -17,8 +17,9 @@ class GridMap {
   void plantCrop(const sf::Vector2u& mousePosGrid, Crop* crop, Player& player); // For planting a crop on a tile
   bool getIsLocked(const sf::Vector2u& mousePosGrid); // Gets if the tile is locked
   bool getHasCrop(const sf::Vector2u& mousePosGrid); // Gets if the tile has a crop
-  bool checkGrid(); // Checks the grid for unlocked tiles with no crops
-  void updateVariables(float growthTime, float sellValue, std::string cropName);
+  bool checkGridFor(const std::string action); // Checks the grid for unlocked tiles with no crops
+  void updateVariables(float growthTime, float sellValue, std::string cropName); // Update all crops variables from the shop
+  void deleteCrop(const sf::Vector2u& mousePosGrid); // Delete a crop
 
   struct Tile { // Struct for each tile 
     sf::RectangleShape shape;

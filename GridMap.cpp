@@ -42,11 +42,13 @@ GridMap::GridMap(float gridSizeF, unsigned gridSizeU, int mapSizeX,
   tileSelector.setOutlineColor(sf::Color::White);
 }
 
-void GridMap::updateTileSelector(const sf::Vector2u& mousePosGrid, bool cropSelected) {
+void GridMap::updateTileSelector(const sf::Vector2u& mousePosGrid, bool cropSelected, bool cropDelete) {
   tileSelector.setPosition(mousePosGrid.x * gridSizeF + gridOffsetX,
                            mousePosGrid.y * gridSizeF + gridOffsetY);
   if (cropSelected) { // If player purchases a crop to plant
     tileSelector.setOutlineColor(sf::Color::Green);
+  } else if (cropDelete) {
+    tileSelector.setOutlineColor(sf::Color::Red);
   } else {
     tileSelector.setOutlineColor(sf::Color::White);
   }
@@ -61,7 +63,9 @@ void GridMap::draw(sf::RenderWindow& window, float dt, bool& resetFrame, sf::Vec
   for (int x = 0; x < mapSizeX; x++) {
     for (int y = 0; y < mapSizeY; y++) {
       if (tileMap[x][y].tileiIsLocked == false) {
-        tileMap[x][y].tileTexture.loadFromFile("plowed_soil.png");
+        if (!tileMap[x][y].tileTexture.loadFromFile("plowed_soil.png")) {
+          throw std::runtime_error("Failed to load texture");
+        }
         tileMap[x][y].sprite.setTexture(tileMap[x][y].tileTexture);
         tileMap[x][y].sprite.setTextureRect(sf::IntRect(0, 160, 32, 32));
         tileMap[x][y].sprite.setPosition(x * gridSizeF + gridOffsetX,
@@ -203,13 +207,13 @@ void GridMap::purchaseGrid(const sf::Vector2u& mousePosGrid, Player& player) {
             }
           }
         }
-        std::cout << "Land Purchased!" << std::endl;
+        //std::cout << "Land Purchased!" << std::endl;
       } else {
-        std::cout << "Invalid Purchase" << std::endl;
+        //std::cout << "Invalid Purchase" << std::endl;
       }
     }
   } else {
-    std::cout << "Land already owned" << std::endl;
+    //std::cout << "Land already owned" << std::endl;
   }
 }
 
@@ -226,11 +230,17 @@ bool GridMap::getHasCrop(const sf::Vector2u& mousePosGrid) {
   return tileMap[mousePosGrid.x][mousePosGrid.y].hasCrop;
 }
 
-bool GridMap::checkGrid() {
+bool GridMap::checkGridFor(const std::string action) {
   for (int x = 0; x < mapSizeX; x++) {
     for (int y = 0; y < mapSizeY; y++) {
-      if (tileMap[x][y].tileiIsLocked == false && tileMap[x][y].hasCrop == false) {
-        return true;
+      if (action == "Delete") {
+        if (tileMap[x][y].tileiIsLocked == false && tileMap[x][y].hasCrop == true) { // If there is a crop
+          return true;
+        } 
+      } else {
+        if (tileMap[x][y].tileiIsLocked == false && tileMap[x][y].hasCrop == false) { // If there isnt a crop
+          return true;
+        }
       }
     }
   }
@@ -240,10 +250,15 @@ bool GridMap::checkGrid() {
 void GridMap::updateVariables(float growthTime, float sellValue, std::string cropName) {
   for (int x = 0; x < mapSizeX; x++) {
     for (int y = 0; y < mapSizeY; y++) {
-      if (tileMap[x][y].hasCrop == true && tileMap[x][y].plantedCrop->getCropType() == cropName) {
+      if (tileMap[x][y].hasCrop == true && tileMap[x][y].plantedCrop->getCropType() == cropName) { // Update all variables
         tileMap[x][y].plantedCrop->setGrowthTime(growthTime);
         tileMap[x][y].plantedCrop->setSellValue(sellValue);
       } 
     }
   }
+}
+
+void GridMap::deleteCrop(const sf::Vector2u& mousePosGrid) { // Delete a crop
+  delete tileMap[mousePosGrid.x][mousePosGrid.y].plantedCrop;
+  tileMap[mousePosGrid.x][mousePosGrid.y].hasCrop = false;
 }

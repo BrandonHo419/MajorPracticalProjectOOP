@@ -2,17 +2,17 @@
 #include <iomanip>
 #include <sstream>
 
-Player::Player(const sf::Vector2f& position): position(position), money(16000.f) {
+Player::Player(const sf::Vector2f& position): position(position), money(80.f) {
     // Walking animations
-    animations[int(indexAnimation::Upwards)] = Animation(64, 64*8, 64, 64, 8, 0);
-    animations[int(indexAnimation::Left)] = Animation(64, 64*9, 64, 64, 8, 0);
-    animations[int(indexAnimation::Downards)] = Animation(64, 64*10, 64, 64, 8, 0);
-    animations[int(indexAnimation::Right)] = Animation(64, 64*11, 64, 64, 8, 0);
+    animations[int(indexAnimation::Upwards)] = Animation(64, 64*8, 64, 64, 8, 1);
+    animations[int(indexAnimation::Left)] = Animation(64, 64*9, 64, 64, 8, 1);
+    animations[int(indexAnimation::Downards)] = Animation(64, 64*10, 64, 64, 8, 1);
+    animations[int(indexAnimation::Right)] = Animation(64, 64*11, 64, 64, 8, 1);
     // Idle Animation
-    animations[int(indexAnimation::UpwardsIdle)] = Animation(0, 64*8, 64, 64, 1, 0);
-    animations[int(indexAnimation::LeftIdle)] = Animation(0, 64*9, 64, 64, 1, 0);
-    animations[int(indexAnimation::DownwardsIdle)] = Animation(0, 64*10, 64, 64, 1, 0);
-    animations[int(indexAnimation::RightIdle)] = Animation(0, 64*11, 64, 64, 1, 0);
+    animations[int(indexAnimation::UpwardsIdle)] = Animation(0, 64*8, 64, 64, 1, 1);
+    animations[int(indexAnimation::LeftIdle)] = Animation(0, 64*9, 64, 64, 1, 1);
+    animations[int(indexAnimation::DownwardsIdle)] = Animation(0, 64*10, 64, 64, 1, 1);
+    animations[int(indexAnimation::RightIdle)] = Animation(0, 64*11, 64, 64, 1, 1);
     
     // Parameters are (x, y, width, height, number of frames, animationID)
 };
@@ -75,11 +75,11 @@ void Player::setCharPosition(float x, float y) {
 }
 
 void Player::setMoney(float cost) {
-    this->money = money - cost;
+    money = money - cost;
 }
 
 void Player::addMoney(float revenue) {
-    this->money = money + revenue;
+    money = money + revenue;
 }
 
 float Player::getMoney() {

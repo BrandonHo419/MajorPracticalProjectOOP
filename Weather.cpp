@@ -49,7 +49,7 @@ void Weather::requestWeather() {
   // Output the full result (for testing)
   std::cout << "Weather Information from bash file: " << result << std::endl;
 
-  // Split the result into separate variables (weather, temperature, and
+  // Split the result into separate variables (temperature, and
   // rainfall)
   std::istringstream iss(result);
 
@@ -88,5 +88,3 @@ std::string Weather:: getTemperatureString() {
 std::string Weather:: getRainfallString() {
   return rainfallStr;
 };
-
-Weather::~Weather() {};

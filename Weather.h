@@ -4,16 +4,15 @@
 
 class Weather {
  public:
-    Weather();
-    void requestWeather();
-    float convertToFloat(std::string& stringValue);
-    float getTemperature();
-    float getRainfall();
-    void removeSymbol(std::string& stringValue);
-    std::string getLocation();
-    std::string getTemperatureString();
-    std::string getRainfallString();
-    ~Weather();
+    Weather(); // Weather Initialiser
+    void requestWeather(); // Requests weather from Ubuntu's wttr API
+    float convertToFloat(std::string& stringValue); // Converts the string result into a float
+    float getTemperature(); // Returns temperature
+    float getRainfall(); // Returns rainfall
+    void removeSymbol(std::string& stringValue); // Remove symbols that the font cant support
+    std::string getLocation(); // Returns location
+    std::string getTemperatureString(); //Returns temperature as a string
+    std::string getRainfallString(); // Returns rainfall as a string
 
   
  private:
