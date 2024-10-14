@@ -16,7 +16,7 @@ class Audio {
   Sound playSound5;
   Clock c;
 
-  enum class SoundState { NONE, FIRST, SECOND, THIRD, FOURTH, FIFTH };
+  enum class SoundState { NONE, FIRST, SECOND, THIRD };
   SoundState currentState;
   //
 
@@ -31,15 +31,13 @@ class Audio {
  public:
   Audio() : currentState(SoundState::NONE) {
     soundtrack1.loadFromFile("wawg.wav");
-    soundtrack3.loadFromFile("weeeee.wav");
+    soundtrack3.loadFromFile("ascendant.wav");
     soundtrack2.loadFromFile("gow.wav");
-    soundtrack4.loadFromFile("ascendant.wav");
-    soundtrack5.loadFromFile("intense.wav");
+    soundtrack4.loadFromFile("weeeee.wav");
     playSound1.setBuffer(soundtrack1);
     playSound2.setBuffer(soundtrack2);
     playSound3.setBuffer(soundtrack3);
     playSound4.setBuffer(soundtrack4);
-    playSound5.setBuffer(soundtrack5);
 
     playSound1.setVolume(70);
     playSound2.setVolume(70);
