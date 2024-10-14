@@ -1,13 +1,12 @@
 
-#include "Crop.h"
 #include "Requirements.h"
 #include "Shop.h"
 #include "Strawberries.h"
-#include "loadRect.h"
+#include "Weather.h"
 #ifndef RANDOMEVENTS_H
 #define RANDOMEVENTS_H
 
-class RandomEvents : public Shop, public Crop {
+class RandomEvents : public Shop, public Weather {
  private:
   Clock c;
   int min;
@@ -16,16 +15,9 @@ class RandomEvents : public Shop, public Crop {
 
   Font font;
 
-  virtual void Draw(sf::RenderTarget& rt) override {}
-  virtual void Update(float dt, float waitTime, bool resetFrame,
-                      Player& player) override {}
-  float virtual getGrowthTime() override { return 0; }
-  void virtual setGrowthTime(float modifier) override {}
-
-  bool forceWorkerStatus(
-      bool haveWorker) {  // passes bool parameter to return the amt of workers
-    this->haveWorkers = haveWorker;
-    return haveWorker;
+  float adjustRain(float rain) {
+    this->rainfall = rain;
+    return rain;
   }
 
   bool eventOne = false;
@@ -45,7 +37,7 @@ class RandomEvents : public Shop, public Crop {
 
   Text message1;
 
-  RandomEvents() : c(), min(1), max(5), rd() {}
+  RandomEvents() : c(), min(1), max(4), rd() {}
 
   void genRand() {
     message1.setFillColor(Color::White);
@@ -56,16 +48,22 @@ class RandomEvents : public Shop, public Crop {
     int genVal = distrib(getRand);
     cout << genVal << endl;
     if (genVal == 1) {
-      deadFarmer();
+      heatStroke();
     } else if (genVal == 2) {
       greatThings();
+    } else if (genVal == 3) {
+      cropPriceForce();
+    } else if (genVal == 4) {
+      economicDepression();
     }
   }
 
   void checkRand() {
-    if (c.getElapsedTime().asSeconds() >= 120) {
+    cout << "Checking for events" << endl;
+    if (c.getElapsedTime().asSeconds() >= 15) {
       genRand();
       c.restart();
+      cout << "Generating Event" << endl;
     }
   };
 
@@ -73,48 +71,42 @@ class RandomEvents : public Shop, public Crop {
     font.loadFromFile("Arial.ttf");
     return font;
   }
-  float deadFarmer() {
+  float heatStroke() {
     eventOne = true;
     getFont();
     message1.setString(
-        "A rival competitor hired Agent 47 and he BRUTALLY assasinated all "
-        "of "
-        "your farmers and stole some money");
+        "A heatstroke happened and your plants are growing super duper slow!");
+    temperature = 70;
+    rainfall = 0;
+    adjustRain(rainfall);
 
-    forceWorkerStatus(false);
-    numOfWorkers = 0;
-    workersLevel = 0;
-    money = money - 520;
-
-    return money;
+    return temperature;
   };
 
-  void greatThings() {
+  float greatThings() {
     eventTwo = true;
     getFont();
     message1.setString(
         "A major economic boom has happened. Take advantage of this and sell "
         "your crops for 2x the price! (lasts 5 minutes)");
     c.restart();
-    globalModifier = 2;
+    priceModifier = 2.0f;
 
     if (c.getElapsedTime().asSeconds() >= 300) {
-      globalModifier = 1;
+      priceModifier = 1.0f;
     } else {
       c.getElapsedTime().asSeconds();
     }
+    return priceModifier;
   }
 
-  int freeWorker() {
+  float cropPriceForce() {
     eventThree = true;
     getFont();
-    message1.setString(
-        "A lonely farmer had his crops destroyed. He wants to join your farm "
-        "for free");
+    message1.setString("Strawberry pricing is weird Sell them for 1000.");
+    priceModifier = 2.0f;
 
-    forceWorkerStatus(true);
-    numOfWorkers = numOfWorkers + 1;
-    return numOfWorkers;
+    return priceModifier;
   }
 
   float economicDepression() {
@@ -123,12 +115,13 @@ class RandomEvents : public Shop, public Crop {
     message1.setString(
         "Unfortunately due to the government printing too much money. The "
         "country is in depression and your crops sell for 0.5x price");
-    globalModifier = 0.5;
+    priceModifier = 0.5f;
     if (c.getElapsedTime().asSeconds() >= 300) {
-      globalModifier = 1;
+      priceModifier = 1.0f;
     } else {
       c.getElapsedTime().asSeconds();
     }
+    return priceModifier;
   }
 };
 
