@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 
+#include "Audio.h"
 #include "Beets.h"
 #include "Blueberries.h"
 #include "Carrots.h"
@@ -21,11 +22,12 @@
 
 int main() {
   // Window setup
-  sf::RenderWindow window(sf::VideoMode(1920, 1080), "Farm Clicker");
+  sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crop Planting Simulator");
   window.setFramerateLimit(60);
 
   RandomEvents events;  // events
   events.checkRand();
+  Audio audio;
 
   // Player
   Player player({200.0f, 200.0f});
@@ -703,8 +705,9 @@ int main() {
       if (haveGreenhouse) {
         greenhouseUnlocked.draw(window);
       }
-        }
+    }
     window.display();
+    audio.playSounds();
   }
 
   return 0;
