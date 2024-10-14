@@ -49,7 +49,7 @@ void Weather::requestWeather() {
   // Output the full result (for testing)
   std::cout << "Weather Information from bash file: " << result << std::endl;
 
-  // Split the result into separate variables (temperature, and
+  // Split the result into separate variables (weather, temperature, and
   // rainfall)
   std::istringstream iss(result);
 
@@ -59,8 +59,17 @@ void Weather::requestWeather() {
   removeSymbol(this->temperatureStr);
 
   // Convert temperature and rainfall to floats
-  this->temperature = convertToFloat(temperatureStr);  // Extract numeric value from temperature
-  this->rainfall = convertToFloat(rainfallStr);  // Extract numeric value from rainfall
+  if (!convertToFloat(temperatureStr)) { // If fails to convert to decimal assign the value 20 to temperature
+    this->temperature = 20;
+  } else {
+    this->temperature = convertToFloat(temperatureStr);  // Extract numeric value from temperature
+  }
+  
+  if (!convertToFloat(rainfallStr)) { // If fails to convert to decimal assign the value 0 to rainfall
+    this->rainfall = 0;
+  } else {
+    this->temperature = convertToFloat(temperatureStr);  // Extract numeric value from temperature  
+  }
 };
 
 void Weather::removeSymbol(std::string& stringValue) { // Remove the Celcius symbol with Degrees Celcius
@@ -88,3 +97,5 @@ std::string Weather:: getTemperatureString() {
 std::string Weather:: getRainfallString() {
   return rainfallStr;
 };
+
+Weather::~Weather() {};
