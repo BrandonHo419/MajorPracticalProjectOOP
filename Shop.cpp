@@ -143,3 +143,7 @@ void Shop::updatePrice() {
     cropSellValue[crop.first] = crop.second * sellPercentage * priceModifier;
   }
 }
+
+void Shop::setPriceModifier(float modifier) { priceModifier = modifier; }
+
+float Shop::getPriceModifier() const { return priceModifier; }

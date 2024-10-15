@@ -31,8 +31,8 @@ class Audio {
  public:
   Audio() : currentState(SoundState::NONE) {
     soundtrack3.loadFromFile("wawg.ogg");
-    soundtrack2.loadFromFile("ascendant.ogg");
-    soundtrack1.loadFromFile("gow.ogg");
+    soundtrack1.loadFromFile("ascendant.ogg");
+    soundtrack2.loadFromFile("gow.ogg");
     soundtrack4.loadFromFile("weeeee.ogg");
     playSound1.setBuffer(soundtrack1);
     playSound2.setBuffer(soundtrack2);

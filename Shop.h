@@ -31,6 +31,9 @@ class Shop {
       const std::string& cropName);  // Retrieve crop var as a string
   void updatePrice();
 
+  void setPriceModifier(float modifier);
+  float getPriceModifier() const;
+
  private:
   float sellPercentage = 0.4f;
   const float increasePricePercentage = 1.20f;

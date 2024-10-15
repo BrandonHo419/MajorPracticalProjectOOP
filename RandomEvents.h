@@ -82,7 +82,7 @@ class RandomEvents : public Shop, public Weather {
     temperature = 70;
     rainfall = 0;
     adjustRain(rainfall);
-    weatherAffected(temperature, rainfall);
+    weatherAffected(70, 0);
     return temperature;
   };
 
@@ -93,16 +93,17 @@ class RandomEvents : public Shop, public Weather {
         "A major economic boom has happened. Take advantage of this and sell "
         "your crops for 2x the price! (lasts 5 minutes)");
     c.restart();
-    priceModifier = 2.0f;
-    updatePrice();
-    Shop();
 
-    if (c.getElapsedTime().asSeconds() >= 300) {
-      priceModifier = 1.0f;
+    if (c.getElapsedTime().asSeconds() < 300) {
+      setPriceModifier(2.0f);
       updatePrice();
-      Shop();
+      cout << priceModifier << endl;
+      cout << getPriceModifier() << endl;
     } else {
-      c.getElapsedTime().asSeconds();
+      setPriceModifier(1.0f);
+      updatePrice();
+      cout << getPriceModifier() << endl;
+      cout << priceModifier << endl;
     }
     return priceModifier;
   }
@@ -111,7 +112,9 @@ class RandomEvents : public Shop, public Weather {
     eventThree = true;
     getFont();
     message1.setString("Strawberry pricing is weird Sell them for 1000.");
-    priceModifier = 5.0f;
+    setPriceModifier(2.0f);
+    cout << priceModifier << endl;
+    cout << getPriceModifier() << endl;
     updatePrice();
     return priceModifier;
   }
@@ -122,13 +125,15 @@ class RandomEvents : public Shop, public Weather {
     message1.setString(
         "Unfortunately due to the government printing too much money. The "
         "country is in depression and your crops sell for 0.5x price");
-    priceModifier = 0.5f;
-    updatePrice();
-    Shop();
-    if (c.getElapsedTime().asSeconds() >= 300) {
-      priceModifier = 1.0f;
-      Shop();
+    if (c.getElapsedTime().asSeconds() < 300) {
+      setPriceModifier(0.5f);
+      updatePrice();
+      cout << priceModifier << endl;
+      cout << getPriceModifier() << endl;
     } else {
+      setPriceModifier(1.0f);
+      cout << priceModifier << endl;
+      cout << getPriceModifier() << endl;
       c.getElapsedTime().asSeconds();
     }
     return priceModifier;
