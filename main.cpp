@@ -82,7 +82,7 @@ int main() {
       {"Del", sf::Vector2f(1050.f, 22.f), 80},
       {"Weather", sf::Vector2f(1410.f, 288.f), 80},
       {"Unlocked", sf::Vector2f(1240.f, 468.f), 30}, // Fertiliser unlocked
-      {"Unlocked", sf::Vector2f(1240.f, 578.f), 30}, // Greenhouse unlocked
+      {"Unlocked", sf::Vector2f(1240.f, 608.f), 30}, // Greenhouse unlocked
 
       {"$", sf::Vector2f(290.f, 0.f), 120},
       {"Location :", sf::Vector2f(1240.f, 388.f), 40},
@@ -356,17 +356,6 @@ int main() {
         }
     }
 
-    // Shop Button
-    shopButton.Reset();
-    if (shopButton.Pressed(worldPosition)) {
-        shopButton.setPressedTexture();
-        //scroll.scrollSmall(); // Sets the scroll to the smaller version temporarily
-        openShop = true;
-        lastFrame = false;
-        if (openMore == true) {openMore = false;}
-        if (openCrop == true) {openCrop = false;} // Ensures that other bools are false
-    }
-
     // Shop Buttons
     if (openShop) {
       // Fertiliser
@@ -375,7 +364,6 @@ int main() {
         if (player.getMoney() >= shop.getItemPrice("Fertiliser") && haveFertiliser == false) { 
           fertiliserButton.setPressedTexture();
           shop.purchaseFertiliser(player); // Purchase the fertiliser
-          fertiliserButton.Reset();
           haveFertiliser = true;
         }
       }
@@ -385,10 +373,20 @@ int main() {
         if (player.getMoney() >= shop.getItemPrice("Greenhouse") && haveGreenhouse == false) { 
           greenhouseButton.setPressedTexture();
           shop.purchaseGreenhouse(player);
-          greenhouseButton.Reset();
           haveGreenhouse = true;
         }
       }
+    }
+
+    // Shop Button
+    shopButton.Reset();
+    if (shopButton.Pressed(worldPosition)) {
+        shopButton.setPressedTexture();
+        scroll.setPressedTexture(); // Sets the scroll to the smaller version temporarily
+        openShop = true;
+        lastFrame = false;
+        if (openMore == true) {openMore = false;}
+        if (openCrop == true) {openCrop = false;} // Ensures that other bools are false
     }
 
     // Crops Button
