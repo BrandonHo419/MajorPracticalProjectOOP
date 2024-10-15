@@ -92,3 +92,20 @@ std::string Player::getMoneyStr() {
     std::string moneyString = playerStream.str(); // Get the formatted string
     return moneyString;
 }
+
+sf::Vector2f Player::handlePlayerInput() {
+    sf::Vector2f direction = {0.0f, 0.0f};
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {  // Up
+      direction.y -= 1.0f;
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {  // Down
+      direction.y += 1.0f;
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {  // Left
+      direction.x -= 1.0f;
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {  // Right
+      direction.x += 1.0f;
+    }
+    return direction;
+}
