@@ -26,7 +26,6 @@ int main() {
   window.setFramerateLimit(60);
 
   RandomEvents events;  // events
-  events.checkRand();
   Audio audio;
 
   // Player
@@ -708,6 +707,7 @@ int main() {
     }
     window.display();
     audio.playSounds();
+    events.checkRand();
   }
 
   return 0;

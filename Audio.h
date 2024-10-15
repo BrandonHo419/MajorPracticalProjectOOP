@@ -30,19 +30,19 @@ class Audio {
  protected:
  public:
   Audio() : currentState(SoundState::NONE) {
-    soundtrack1.loadFromFile("wawg.wav");
-    soundtrack3.loadFromFile("ascendant.wav");
-    soundtrack2.loadFromFile("gow.wav");
-    soundtrack4.loadFromFile("weeeee.wav");
+    soundtrack3.loadFromFile("wawg.ogg");
+    soundtrack2.loadFromFile("ascendant.ogg");
+    soundtrack1.loadFromFile("gow.ogg");
+    soundtrack4.loadFromFile("weeeee.ogg");
     playSound1.setBuffer(soundtrack1);
     playSound2.setBuffer(soundtrack2);
     playSound3.setBuffer(soundtrack3);
     playSound4.setBuffer(soundtrack4);
 
-    playSound1.setVolume(70);
-    playSound2.setVolume(70);
-    playSound3.setVolume(70);
-    playSound4.setVolume(40);
+    playSound1.setVolume(72);
+    playSound2.setVolume(72);
+    playSound3.setVolume(72);
+    playSound4.setVolume(42);
     playSound5.setVolume(45);
   };
 

@@ -29,6 +29,8 @@ class Shop {
       const std::string& cropName);  // Retrieve rainfall modifier
   std::string getWeatherModfiersStr(
       const std::string& cropName);  // Retrieve crop var as a string
+  void updatePrice();
+
  private:
   float sellPercentage = 0.4f;
   const float increasePricePercentage = 1.20f;

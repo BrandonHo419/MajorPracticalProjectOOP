@@ -48,19 +48,22 @@ class RandomEvents : public Shop, public Weather {
     int genVal = distrib(getRand);
     cout << genVal << endl;
     if (genVal == 1) {
+      cout << "Heat" << endl;
       heatStroke();
     } else if (genVal == 2) {
+      cout << "greatthjing0" << endl;
       greatThings();
     } else if (genVal == 3) {
+      cout << "PRICE FORCE" << endl;
       cropPriceForce();
     } else if (genVal == 4) {
+      cout << "Eco Depression" << endl;
       economicDepression();
     }
   }
 
   void checkRand() {
-    cout << "Checking for events" << endl;
-    if (c.getElapsedTime().asSeconds() >= 15) {
+    if (c.getElapsedTime().asSeconds() >= 45) {
       genRand();
       c.restart();
       cout << "Generating Event" << endl;
@@ -79,7 +82,7 @@ class RandomEvents : public Shop, public Weather {
     temperature = 70;
     rainfall = 0;
     adjustRain(rainfall);
-
+    weatherAffected(temperature, rainfall);
     return temperature;
   };
 
@@ -91,9 +94,13 @@ class RandomEvents : public Shop, public Weather {
         "your crops for 2x the price! (lasts 5 minutes)");
     c.restart();
     priceModifier = 2.0f;
+    updatePrice();
+    Shop();
 
     if (c.getElapsedTime().asSeconds() >= 300) {
       priceModifier = 1.0f;
+      updatePrice();
+      Shop();
     } else {
       c.getElapsedTime().asSeconds();
     }
@@ -104,8 +111,8 @@ class RandomEvents : public Shop, public Weather {
     eventThree = true;
     getFont();
     message1.setString("Strawberry pricing is weird Sell them for 1000.");
-    priceModifier = 2.0f;
-
+    priceModifier = 5.0f;
+    updatePrice();
     return priceModifier;
   }
 
@@ -116,8 +123,11 @@ class RandomEvents : public Shop, public Weather {
         "Unfortunately due to the government printing too much money. The "
         "country is in depression and your crops sell for 0.5x price");
     priceModifier = 0.5f;
+    updatePrice();
+    Shop();
     if (c.getElapsedTime().asSeconds() >= 300) {
       priceModifier = 1.0f;
+      Shop();
     } else {
       c.getElapsedTime().asSeconds();
     }

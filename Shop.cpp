@@ -137,3 +137,9 @@ std::string Shop::getWeatherModfiersStr(const std::string& cropName) {
   std::string weatherString = weatherStream.str();
   return weatherString;
 }
+
+void Shop::updatePrice() {
+  for (const auto& crop : cropPrices) {
+    cropSellValue[crop.first] = crop.second * sellPercentage * priceModifier;
+  }
+}
